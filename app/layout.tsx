@@ -22,7 +22,7 @@ const clashDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://allan-kj.github.io"),
+  metadataBase: new URL("https://allan-kj.github.io/"),
   applicationName: "Allan K.J",
   title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
   description:
@@ -39,9 +39,6 @@ export const metadata: Metadata = {
     "IPsec Sentinel",
   ],
   authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/" }],
-  alternates: {
-    canonical: "https://allan-kj.github.io/",
-  },
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -120,6 +117,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${inter.variable} ${clashDisplay.variable} h-full antialiased font-sans`}
     >
       <head>
+        <link rel="canonical" href="https://allan-kj.github.io/" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
