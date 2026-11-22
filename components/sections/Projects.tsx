@@ -110,11 +110,12 @@ export default function Projects() {
   const projects = [
     {
       title: "Personal Portfolio Website",
-      category: "3D Interactive Site",
+      category: "Interactive Portfolio",
       description:
-        "Built with Next.js, TypeScript, Three.js, React Three Fiber, GSAP, and Tailwind CSS. Features an interactive 3D scene with scroll-linked animation. Implemented smooth-scroll UX (Lenis) and post-processing visual effects (bloom, depth) for a polished, cinematic presentation.",
-      link: "https://allan-portfolioo.vercel.app",
-      buttonText: "See the build",
+        "Built with Next.js 15, TypeScript, GSAP, Tailwind CSS, and Lenis smooth scrolling. Features an interactive bash terminal emulator, Miles Morales-inspired kinetic glitch typography, and physics-based continuous momentum scrolling.",
+      link: null,
+      isCurrent: true,
+      buttonText: "Currently Viewing",
     },
     {
       title: "Smart India Hackathon (SIH) 2026",
@@ -235,7 +236,12 @@ export default function Projects() {
 
               {/* Action Button */}
               <div className="mt-6 md:mt-8 transition-transform duration-300 group-hover:translate-y-[-2px]">
-                {project.link ? (
+                {project.isCurrent ? (
+                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
+                    <span className="w-2 h-2 rounded-full bg-[#D9A15C] animate-pulse" />
+                    Currently Viewing
+                  </div>
+                ) : project.link ? (
                   <AnimatedButton
                     href={project.link}
                     target="_blank"

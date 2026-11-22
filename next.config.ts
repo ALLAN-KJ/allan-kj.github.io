@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
 const isProd = process.env.NODE_ENV === "production";
-const repoName = "/Allan-portfolio";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (isProd ? repoName : "");
+const repoName = "";
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const nextConfig: NextConfig = {
   output: "export",

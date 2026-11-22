@@ -34,7 +34,7 @@ Domains   : Cybersecurity, System Design, IoT, Linux System Administration`,
 3. Qaroo — Software Intern, Full-Stack & API Integration (Jun 1 – 20, 2026)`,
 
   projects: `1. SIH 2026 (PS 26160)   -> https://sih-2026-frontend-eight.vercel.app
-2. 3D Interactive Site   -> https://allan-portfolioo.vercel.app
+2. Interactive Portfolio -> https://allan-kj.github.io/ (This Site)
 3. Student LMS Platform  -> https://student-lms-vds8.onrender.com/
 4. GHOST Voice Assistant -> Desktop AI assistant for WhatsApp & browser automation
 5. 3D Education Website  -> Interactive book-geometry learning platform`,

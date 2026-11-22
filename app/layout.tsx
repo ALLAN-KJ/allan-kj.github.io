@@ -22,7 +22,7 @@ const clashDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://allan-kj.github.io/Allan-portfolio"),
+  metadataBase: new URL("https://allan-kj.github.io"),
   applicationName: "Allan K.J",
   title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
   description:
@@ -38,25 +38,25 @@ export const metadata: Metadata = {
     "Allan portfolio",
     "IPsec Sentinel",
   ],
-  authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/Allan-portfolio/" }],
+  authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/" }],
   alternates: {
-    canonical: "https://allan-kj.github.io/Allan-portfolio/",
+    canonical: "https://allan-kj.github.io/",
   },
   icons: {
     icon: [
-      { url: "/Allan-portfolio/favicon.svg", type: "image/svg+xml" },
-      { url: "/Allan-portfolio/icon-48.png", sizes: "48x48", type: "image/png" },
-      { url: "/Allan-portfolio/icon-192.png", sizes: "192x192", type: "image/png" },
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/icon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/icon-192.png", sizes: "192x192", type: "image/png" },
     ],
     apple: [
-      { url: "/Allan-portfolio/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
+      { url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" },
     ],
   },
   openGraph: {
     title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
     description:
       "Official interactive 3D portfolio of Allan K.J — Cybersecurity specialist and creative developer. Featuring real-time WebGL 3D scenes and security research.",
-    url: "https://allan-kj.github.io/Allan-portfolio/",
+    url: "https://allan-kj.github.io/",
     siteName: "Allan K.J",
     type: "website",
   },
@@ -93,7 +93,7 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "Allan K.J",
   alternateName: ["Allan K.J Portfolio", "Allan Portfolio", "Allan KJ"],
-  url: "https://allan-kj.github.io/Allan-portfolio/",
+  url: "https://allan-kj.github.io/",
 };
 
 const personJsonLd = {
@@ -101,7 +101,7 @@ const personJsonLd = {
   "@type": "Person",
   name: "Allan K J",
   alternateName: ["Allan K.J", "Allan K. J.", "Allan KJ"],
-  url: "https://allan-kj.github.io/Allan-portfolio/",
+  url: "https://allan-kj.github.io/",
   jobTitle: "Cybersecurity Specialist & Full-Stack Developer",
   alumniOf: {
     "@type": "CollegeOrUniversity",

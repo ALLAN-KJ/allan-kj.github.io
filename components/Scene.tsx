@@ -52,7 +52,7 @@ const RippleShaderMaterial = shaderMaterial(
 extend({ RippleShaderMaterial });
 
 function IDCard({ isMobile = false }: { isMobile?: boolean }) {
-  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || (process.env.NODE_ENV === "production" ? "/Allan-portfolio" : "");
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
   const photoTexture = useTexture(`${basePath}/images/allan_coat.png`);
   const photoTextureBw = useTexture(`${basePath}/images/allan_coatbw.png`);
   const [hovered, setHovered] = useState(false);
