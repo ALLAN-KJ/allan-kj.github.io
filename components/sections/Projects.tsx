@@ -90,7 +90,7 @@ export default function Projects() {
         start: "top top",
         end: () => `+=${Math.max(window.innerHeight * 1.3, getScrollAmount() * 1.15)}`,
         pin: true,
-        scrub: 0.5,
+        scrub: 0.25, // Low-latency scrub locked 1:1 to Lenis high-refresh momentum
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {

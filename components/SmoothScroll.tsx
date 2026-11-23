@@ -7,18 +7,29 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
+// Global ultra-high refresh rate performance configuration (120Hz / 144Hz / 240Hz / 360Hz)
+gsap.config({
+  force3D: true, // Enforces permanent GPU compositing layers for zero-stutter hardware transforms
+  nullTargetWarn: false,
+});
+
+ScrollTrigger.config({
+  limitCallbacks: true, // Synchronizes trigger callbacks strictly to the hardware display refresh rate
+  ignoreMobileResize: true, // Prevents mobile URL-bar collapsing from triggering expensive layout recalculations
+});
+
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-    // High-refresh rate optimized Lenis instance (tuned for 120Hz / 144Hz / ProMotion displays)
+    // Ultra-high refresh rate calibrated Lenis instance
     const lenis = new Lenis({
-      duration: 1.2, // Crisp, velvety smooth deceleration curve tuned for high-refresh monitors
+      duration: 1.15, // Razor-sharp, velvety momentum curve tuned for high-refresh monitors
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease-out
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
       syncTouch: true, // Smooth touch-based scrolling on mobile 120Hz displays (ProMotion / AMOLED)
-      syncTouchLerp: 0.08, // Gliding momentum with instantaneous responsiveness
-      touchInertiaExponent: 2.0, // Natural fluid inertia when finger lifts
+      syncTouchLerp: 0.085, // Gliding momentum with instantaneous responsiveness
+      touchInertiaExponent: 1.9, // Natural fluid inertia when finger lifts
       wheelMultiplier: 1.0, // 1:1 precision with high-DPI mice and Apple trackpads
       touchMultiplier: 1.5, // Responsive yet silky mobile touch tracking
       autoResize: true,
