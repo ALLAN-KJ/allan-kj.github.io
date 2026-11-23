@@ -17,12 +17,15 @@
   }
 
   html, body {
+    scroll-behavior: auto !important;
     max-width: 100vw;
     overflow-x: hidden;
     background-color: var(--color-background);
     color: var(--color-foreground);
     margin: 0;
     padding: 0;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   @media (pointer: fine) {
