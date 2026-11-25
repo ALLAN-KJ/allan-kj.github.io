@@ -31,6 +31,9 @@ export const metadata: Metadata = {
     "Allan K.J",
     "Allan K J",
     "Allan KJ",
+    "Allan K.J portfolio",
+    "Allan K.J official website",
+    "Allan K.J developer",
     "Allan Karunya",
     "Allan Cybersecurity",
     "Full-Stack Developer",
@@ -88,26 +91,52 @@ export const viewport: Viewport = {
 const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
+  "@id": "https://allan-kj.github.io/#website",
   name: "Allan K.J",
   alternateName: ["Allan K.J Portfolio", "Allan Portfolio", "Allan KJ"],
   url: "https://allan-kj.github.io/",
+  publisher: {
+    "@id": "https://allan-kj.github.io/#person",
+  },
+  author: {
+    "@id": "https://allan-kj.github.io/#person",
+  },
 };
 
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
+  "@id": "https://allan-kj.github.io/#person",
   name: "Allan K J",
   alternateName: ["Allan K.J", "Allan K. J.", "Allan KJ"],
   url: "https://allan-kj.github.io/",
+  image: "https://allan-kj.github.io/icon-512.png",
   jobTitle: "Cybersecurity Specialist & Full-Stack Developer",
+  disambiguatingDescription:
+    "Cybersecurity specialist, network defense researcher, and creative full-stack software engineer based in India, alumnus of Karunya Institute of Technology and Sciences.",
+  knowsAbout: [
+    "Cybersecurity",
+    "Network Security",
+    "IPsec VPN Architecture",
+    "Full-Stack Web Development",
+    "Next.js",
+    "TypeScript",
+    "GSAP Animation",
+    "Tailwind CSS",
+  ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Karunya Institute of Technology and Sciences",
+    sameAs: "https://www.karunya.edu/",
   },
   sameAs: [
     "https://github.com/ALLAN-KJ",
     "https://linkedin.com/in/allan-k-j-21389838a",
   ],
+  mainEntityOfPage: {
+    "@type": "WebPage",
+    "@id": "https://allan-kj.github.io/",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
