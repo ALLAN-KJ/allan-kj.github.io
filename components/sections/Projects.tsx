@@ -229,7 +229,7 @@ export default function Projects() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
+                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-normal">
                   {project.description}
                 </p>
               </div>

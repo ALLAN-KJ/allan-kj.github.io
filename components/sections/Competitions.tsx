@@ -115,11 +115,11 @@ export default function Competitions() {
               </div>
               
               <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
+                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-xs mb-3">
                   {comp.date}
                 </p>
                 <h3 
-                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-7 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-5 tracking-[-0.02em]"
                   data-text={comp.title}
                 >
                   {comp.title}
@@ -128,14 +128,14 @@ export default function Competitions() {
                   {comp.events.map((event, eIdx) => (
                     <span 
                       key={eIdx}
-                      className="px-4 py-2 rounded-full bg-white/5 border border-white/8 text-[#9A9AA5] text-xs font-medium tracking-wide group-hover:border-[#D9A15C]/20 transition-colors duration-300"
+                      className="px-4 py-2 rounded-full bg-white/5 border border-white/8 text-[#EDEDF2] text-xs font-medium tracking-wide group-hover:border-[#D9A15C]/20 transition-colors duration-300"
                     >
                       {event}
                     </span>
                   ))}
                 </div>
                 {comp.description && (
-                  <p className="mt-5 text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
+                  <p className="mt-5 text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-normal">
                     {comp.description}
                   </p>
                 )}

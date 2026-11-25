@@ -89,7 +89,7 @@ export default function Skills() {
               }}
               className="group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
             >
-              <h3 className="text-base font-semibold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.05em] uppercase transition-transform duration-500 group-hover:translate-x-1">
+              <h3 className="text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.03em] uppercase transition-transform duration-500 group-hover:translate-x-1">
                 <span className="w-5 h-5 rounded-full border border-[#D9A15C]/40 flex items-center justify-center group-hover:border-[#D9A15C]/80 transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C]/60 group-hover:bg-[#D9A15C] transition-colors" />
                 </span>
@@ -97,8 +97,8 @@ export default function Skills() {
               </h3>
               <ul className="space-y-3">
                 {category.skills.map((skill, sIdx) => (
-                  <li key={sIdx} className="text-[#9A9AA5] font-light flex items-start gap-3 text-sm leading-[1.7] transition-colors duration-300 group-hover:text-[#EDEDF2]/70">
-                    <span className="text-[#D9A15C]/60 mt-1 opacity-80 group-hover:opacity-100 transition-opacity text-xs">▹</span>
+                  <li key={sIdx} className="text-[#9A9AA5] font-normal flex items-start gap-3 text-sm leading-[1.7] transition-colors duration-300 group-hover:text-[#EDEDF2]">
+                    <span className="text-[#D9A15C] mt-1 opacity-80 group-hover:opacity-100 transition-opacity text-xs">▹</span>
                     {skill}
                   </li>
                 ))}

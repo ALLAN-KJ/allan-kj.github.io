@@ -152,16 +152,16 @@ export default function Certifications() {
               </div>
 
               <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
+                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-xs mb-3">
                   {cert.issuer}
                 </p>
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-4 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em]"
                   data-text={cert.title}
                 >
                   {cert.title}
                 </h3>
-                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
+                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-normal">
                   {cert.description}
                 </p>
 
