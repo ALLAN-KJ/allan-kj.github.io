@@ -60,20 +60,6 @@ export default function Certifications() {
 
   const certifications: CertificateData[] = [
     {
-      title: "Introduction to IoT and Digital Transformation",
-      issuer: "Cisco Networking Academy",
-      description: "Covers IoT architecture, connected device ecosystems, and digital transformation in enterprise IT.",
-      image: "/certificates/cisco-iot.png",
-      credentialId: "CISCO-NETACAD-ALLANKJ-IOT",
-    },
-    {
-      title: "Red Hat System Administration I (RH124, Ver. 10)",
-      issuer: "Red Hat (RHA)",
-      description: "Covers Linux CLI, filesystem management, user/group administration, and system services.",
-      image: "/certificates/redhat-rh124.png",
-      credentialId: "REDHAT-RHA-RH124-ALLANKJ",
-    },
-    {
       title: "Oracle Java Foundations (1Z0-811)",
       issuer: "Oracle",
       description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
