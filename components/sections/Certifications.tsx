@@ -143,7 +143,7 @@ export default function Certifications() {
               className="gpu-accel will-change-transform w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
             >
               {/* Desktop Hover Pill */}
-              <div className="absolute top-8 right-8 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[0.7rem] text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
+              <div className="absolute top-8 right-8 hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs md:text-sm text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
                 <span>View Certificate</span>
                 <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -151,21 +151,21 @@ export default function Certifications() {
               </div>
 
               <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
-                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
+                <p className="text-[#D9A15C] font-semibold tracking-[0.14em] uppercase text-xs md:text-sm mb-4">
                   {cert.issuer}
                 </p>
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2.25rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
                   data-text={cert.title}
                 >
                   {cert.title}
                 </h3>
-                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
+                <p className="text-[#9A9AA5] text-base md:text-lg lg:text-xl leading-[1.8] font-light">
                   {cert.description}
                 </p>
 
                 {/* Mobile Tap Pill */}
-                <div className="mt-4 flex sm:hidden items-center gap-1.5 text-xs text-[#D9A15C] font-medium">
+                <div className="mt-4 flex sm:hidden items-center gap-2 text-sm text-[#D9A15C] font-medium">
                   <span>Tap to view certificate</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />

@@ -180,13 +180,13 @@ export default function Projects() {
         className="w-full h-screen min-h-screen flex flex-col justify-center relative overflow-hidden"
       >
         {/* Top Status & Progress Bar (Visible on mobile & desktop) */}
-        <div className="flex absolute top-14 md:top-20 lg:top-24 left-6 md:left-12 right-6 md:right-12 lg:left-24 lg:right-24 z-40 items-center justify-between text-[0.65rem] md:text-xs font-mono tracking-widest text-[#9A9AA5]/70 uppercase select-none pointer-events-none">
+        <div className="flex absolute top-14 md:top-20 lg:top-24 left-6 md:left-12 right-6 md:right-12 lg:left-24 lg:right-24 z-40 items-center justify-between text-xs md:text-sm font-mono tracking-widest text-[#9A9AA5]/80 uppercase select-none pointer-events-none">
           <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C] animate-pulse" />
+            <span className="w-2 h-2 rounded-full bg-[#D9A15C] animate-pulse" />
             Projects Showcase
           </span>
           <div className="flex items-center gap-3 md:gap-4">
-            <span className="text-[#D9A15C]/80">01 — 05 + More</span>
+            <span className="text-[#D9A15C]/80 font-semibold">01 — 05 + More</span>
             <div className="w-24 md:w-36 h-[2px] bg-white/10 rounded-full overflow-hidden">
               <div
                 ref={progressBarRef}
@@ -213,24 +213,24 @@ export default function Projects() {
               <div>
                 {/* Card Header: Category Tag & Large Index Counter */}
                 <div className="flex items-start justify-between gap-3 mb-5 md:mb-6">
-                  <span className="px-3 py-1 rounded-full bg-[#D9A15C]/10 border border-[#D9A15C]/20 text-[#D9A15C] font-medium tracking-[0.1em] uppercase text-[0.65rem] md:text-[0.7rem] transition-transform duration-300 group-hover:translate-x-1">
+                  <span className="px-3.5 py-1.5 rounded-full bg-[#D9A15C]/10 border border-[#D9A15C]/20 text-[#D9A15C] font-semibold tracking-[0.12em] uppercase text-xs md:text-sm transition-transform duration-300 group-hover:translate-x-1">
                     {project.category}
                   </span>
-                  <span className="text-xl md:text-2xl font-heading font-black text-white/20 group-hover:text-[#D9A15C]/70 transition-colors duration-300 flex-shrink-0">
+                  <span className="text-2xl md:text-3xl font-heading font-black text-white/25 group-hover:text-[#D9A15C]/80 transition-colors duration-300 flex-shrink-0">
                     0{idx + 1}
                   </span>
                 </div>
 
                 {/* Title */}
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2.25rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                   data-text={project.title}
                 >
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#9A9AA5] text-base md:text-lg leading-[1.8] font-light">
+                <p className="text-[#9A9AA5] text-base md:text-lg lg:text-xl leading-[1.8] font-light">
                   {project.description}
                 </p>
               </div>
@@ -238,8 +238,8 @@ export default function Projects() {
               {/* Action Button */}
               <div className="mt-6 md:mt-8 transition-transform duration-300 group-hover:translate-y-[-2px]">
                 {project.isCurrent ? (
-                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
-                    <span className="w-2 h-2 rounded-full bg-[#D9A15C] animate-pulse" />
+                  <div className="px-6 py-3 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center gap-2.5 text-sm md:text-base font-semibold uppercase tracking-[0.12em] min-h-[44px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#D9A15C] animate-pulse" />
                     Currently Viewing
                   </div>
                 ) : project.link ? (
@@ -251,7 +251,7 @@ export default function Projects() {
                     {project.buttonText}
                   </AnimatedButton>
                 ) : (
-                  <div className="px-5 py-2.5 rounded-full border border-white/10 text-[#9A9AA5] inline-flex items-center text-xs md:text-sm font-medium cursor-not-allowed uppercase tracking-[0.12em] min-h-[40px]">
+                  <div className="px-6 py-3 rounded-full border border-white/10 text-[#9A9AA5] inline-flex items-center text-sm md:text-base font-medium cursor-not-allowed uppercase tracking-[0.12em] min-h-[44px]">
                     {project.buttonText}
                   </div>
                 )}
@@ -266,14 +266,14 @@ export default function Projects() {
             <div>
               {/* Card Header: Category Tag & GitHub SVG Link */}
               <div className="flex items-start justify-between gap-3 mb-5 md:mb-6">
-                <span className="px-3 py-1 rounded-full bg-[#D9A15C]/15 border border-[#D9A15C]/30 text-[#D9A15C] font-medium tracking-[0.1em] uppercase text-[0.65rem] md:text-[0.7rem] transition-transform duration-300 group-hover:translate-x-1">
+                <span className="px-3.5 py-1.5 rounded-full bg-[#D9A15C]/15 border border-[#D9A15C]/30 text-[#D9A15C] font-semibold tracking-[0.12em] uppercase text-xs md:text-sm transition-transform duration-300 group-hover:translate-x-1">
                   Open Source & More
                 </span>
                 <a
                   href="https://github.com/ALLAN-KJ"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-8 h-8 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[#EDEDF2] hover:text-[#D9A15C] hover:border-[#D9A15C]/40 transition-colors flex-shrink-0"
+                  className="w-9 h-9 rounded-full border border-white/10 bg-white/5 flex items-center justify-center text-[#EDEDF2] hover:text-[#D9A15C] hover:border-[#D9A15C]/40 transition-colors flex-shrink-0"
                   aria-label="GitHub Profile"
                 >
                   <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
@@ -284,14 +284,14 @@ export default function Projects() {
 
               {/* Title */}
               <h3 
-                className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                className="spider-glitch text-2xl md:text-3xl lg:text-[2.25rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                 data-text="More on GitHub"
               >
                 More on GitHub
               </h3>
 
               {/* Description */}
-              <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
+              <p className="text-[#9A9AA5] text-base md:text-lg lg:text-xl leading-[1.8] font-light">
                 Want to explore more source code, experiments, and ongoing builds? Check out all public repositories on GitHub or reach out to collaborate.
               </p>
             </div>
@@ -307,7 +307,7 @@ export default function Projects() {
               </AnimatedButton>
               <a
                 href="#contact"
-                className="text-xs md:text-sm text-[#9A9AA5] hover:text-[#D9A15C] font-mono tracking-wider uppercase transition-colors inline-flex items-center gap-1.5"
+                className="text-sm md:text-base text-[#9A9AA5] hover:text-[#D9A15C] font-mono tracking-wider uppercase transition-colors inline-flex items-center gap-2"
               >
                 <span>Let&apos;s Talk</span>
                 <span>→</span>
