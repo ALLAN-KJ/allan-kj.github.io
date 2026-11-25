@@ -118,7 +118,7 @@ export default function Certifications() {
     <section id="certifications" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <h2 
-          className="certifications-heading spider-glitch text-[clamp(2.5rem,8vw,5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.03em] leading-[0.92]"
+          className="certifications-heading spider-glitch text-5xl sm:text-6xl md:text-7xl font-black font-heading text-[#EDEDF2] mb-16 text-center tracking-[-0.04em] leading-[1.0]"
           data-text="Certifications."
         >
           Certifications<span className="text-[#D9A15C]">.</span>
@@ -156,12 +156,12 @@ export default function Certifications() {
                   {cert.issuer}
                 </p>
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-4 tracking-[-0.02em]"
+                  className="text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-4 tracking-[-0.02em]"
                   data-text={cert.title}
                 >
                   {cert.title}
                 </h3>
-                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
+                <p className="text-[#9A9AA5] text-base leading-[1.75] font-normal">
                   {cert.description}
                 </p>
 
