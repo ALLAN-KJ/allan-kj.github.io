@@ -88,6 +88,7 @@ export default function Certifications() {
       description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
       image: "/certificates/oracle-java.png",
       credentialId: "ORACLE-1Z0-811",
+      date: "Sept 24, 2026",
     },
     {
       title: "EC-Council Cybersecurity Workshop",
@@ -100,12 +101,16 @@ export default function Certifications() {
       issuer: "MeitY / NIXI & APNIC Foundation",
       description: "Certificate of Participation — AIORI-3 Student Workshop on Internet Measurements, Karunya Institute of Technology and Sciences, Sept 8, 2026 (ISEA Initiative).",
       image: "/certificates/aiori3-apnic.png",
+      date: "Sept 8, 2026",
     },
     {
       title: "Privacy and Security in Online Social Media",
-      issuer: "NPTEL (IIIT Hyderabad)",
-      description: "12-week NPTEL online certification (Jul–Oct 2026); consolidated score of 67%.",
+      issuer: "NPTEL (IIIT Hyderabad / IIT Madras)",
+      description: "12-week NPTEL online certification (Jul–Oct 2026); scored 67% (Elite badge). Roll No: NPTEL26CS141S1084806030.",
       image: "/certificates/nptel-social-media.png",
+      date: "Jul–Oct 2026",
+      credentialId: "NPTEL26CS141S1084806030",
+      verifyUrl: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
     },
   ];
 

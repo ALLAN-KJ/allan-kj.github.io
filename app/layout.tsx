@@ -13,9 +13,12 @@ const inter = Inter({
 
 const clashDisplay = localFont({
   src: [
+    { path: "../public/fonts/ClashDisplay-Medium.woff2", weight: "400", style: "normal" },
     { path: "../public/fonts/ClashDisplay-Medium.woff2", weight: "500", style: "normal" },
     { path: "../public/fonts/ClashDisplay-SemiBold.woff2", weight: "600", style: "normal" },
     { path: "../public/fonts/ClashDisplay-Bold.woff2", weight: "700", style: "normal" },
+    { path: "../public/fonts/ClashDisplay-Bold.woff2", weight: "800", style: "normal" },
+    { path: "../public/fonts/ClashDisplay-Bold.woff2", weight: "900", style: "normal" },
   ],
   variable: "--font-clash",
   display: "swap",
@@ -147,6 +150,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     >
       <head>
         <link rel="canonical" href="https://allan-kj.github.io/" />
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link href="https://api.fontshare.com/v2/css?f[]=clash-display@200,300,400,500,600,700&display=swap" rel="stylesheet" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
