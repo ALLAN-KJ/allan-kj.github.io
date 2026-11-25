@@ -80,46 +80,29 @@ export default function Skills() {
           Skills<span className="text-[#D9A15C]">.</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {skillCategories.map((category, idx) => (
             <div
               key={idx}
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="group bg-[#0F111A]/90 border border-white/10 rounded-2xl p-7 md:p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 shadow-lg hover:shadow-[0_10px_30px_rgba(217,161,92,0.08)] cursor-default flex flex-col justify-between"
+              className="group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
             >
-              <div>
-                <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/5">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#D9A15C]">
-                    // 0{idx + 1}
-                  </span>
-                  <span className="text-xs font-mono text-[#9A9AA5] tracking-wider uppercase">
-                    {category.skills.length} Capabilities
-                  </span>
-                </div>
-
-                <h3 className="text-xl font-bold font-heading text-[#EDEDF2] mb-6 tracking-tight">
-                  {category.title}
-                </h3>
-
-                <div className="flex flex-wrap gap-2.5">
-                  {category.skills.map((skill, sIdx) => (
-                    <span
-                      key={sIdx}
-                      className="px-3.5 py-2 rounded-xl bg-white/[0.03] border border-white/10 text-sm font-medium text-[#D4D4D8] group-hover:border-[#D9A15C]/20 hover:!border-[#D9A15C]/60 hover:!text-[#EDEDF2] hover:!bg-[#D9A15C]/10 transition-all duration-200 select-none inline-flex items-center gap-2"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C]/40" />
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="mt-8 pt-4 border-t border-white/5 flex items-center justify-between text-xs text-[#9A9AA5]">
-                <span className="font-mono">Status: Verified</span>
-                <span className="w-2 h-2 rounded-full bg-emerald-500/70" />
-              </div>
+              <h3 className="text-base font-semibold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.05em] uppercase transition-transform duration-500 group-hover:translate-x-1">
+                <span className="w-5 h-5 rounded-full border border-[#D9A15C]/40 flex items-center justify-center group-hover:border-[#D9A15C]/80 transition-colors">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C]/60 group-hover:bg-[#D9A15C] transition-colors" />
+                </span>
+                <span className="spider-glitch" data-text={category.title}>{category.title}</span>
+              </h3>
+              <ul className="space-y-3">
+                {category.skills.map((skill, sIdx) => (
+                  <li key={sIdx} className="text-[#9A9AA5] font-light flex items-start gap-3 text-sm leading-[1.7] transition-colors duration-300 group-hover:text-[#EDEDF2]/70">
+                    <span className="text-[#D9A15C]/60 mt-1 opacity-80 group-hover:opacity-100 transition-opacity text-xs">▹</span>
+                    {skill}
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>

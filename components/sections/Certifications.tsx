@@ -124,7 +124,7 @@ export default function Certifications() {
           Certifications<span className="text-[#D9A15C]">.</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex flex-col gap-10 items-center">
           {certifications.map((cert, idx) => (
             <div
               key={idx}
@@ -141,50 +141,33 @@ export default function Certifications() {
               role="button"
               tabIndex={0}
               aria-label={`View ${cert.title} certificate`}
-              className={`bg-[#0F111A]/90 border border-white/10 rounded-2xl p-7 md:p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50 flex flex-col justify-between ${
-                cert.credentialId === "NPTEL26CS141S1084806030" ? "md:col-span-2 md:p-9 border-[#D9A15C]/30 bg-[#0F111A]" : ""
-              }`}
+              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
             >
-              <div>
-                <div className="flex items-center justify-between gap-3 mb-4 pb-3 border-b border-white/5">
-                  <div className="flex items-center gap-2">
-                    <span className="w-2 h-2 rounded-full bg-[#D9A15C]" />
-                    <span className="font-mono text-xs uppercase tracking-widest text-[#D9A15C]">
-                      {cert.issuer}
-                    </span>
-                  </div>
-                  {cert.date && (
-                    <span className="font-mono text-xs text-[#9A9AA5]">
-                      {cert.date}
-                    </span>
-                  )}
-                </div>
-
-                <h3 className="text-xl md:text-2xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-tight group-hover:text-white transition-colors">
-                  {cert.title}
-                </h3>
-
-                <p className="text-[#D1D5DB] text-sm md:text-base leading-[1.7] font-normal mb-5">
-                  {cert.description}
-                </p>
+              {/* Desktop Hover Pill */}
+              <div className="absolute top-8 right-8 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[0.7rem] text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
+                <span>View Certificate</span>
+                <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
               </div>
 
-              <div className="pt-4 border-t border-white/5 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {cert.credentialId && (
-                    <span className="font-mono text-[0.7rem] uppercase tracking-wider text-[#D9A15C] px-2 py-0.5 rounded bg-[#D9A15C]/10 border border-[#D9A15C]/20">
-                      ID: {cert.credentialId}
-                    </span>
-                  )}
-                  {cert.verifyUrl && (
-                    <span className="font-mono text-[0.7rem] uppercase tracking-wider text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20">
-                      Verified
-                    </span>
-                  )}
-                </div>
+              <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
+                  {cert.issuer}
+                </p>
+                <h3 
+                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-4 tracking-[-0.02em]"
+                  data-text={cert.title}
+                >
+                  {cert.title}
+                </h3>
+                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
+                  {cert.description}
+                </p>
 
-                <div className="flex items-center gap-1.5 text-xs text-[#D9A15C] font-mono group-hover:translate-x-1 transition-transform">
-                  <span>View Proof</span>
+                {/* Mobile Tap Pill */}
+                <div className="mt-4 flex sm:hidden items-center gap-1.5 text-xs text-[#D9A15C] font-medium">
+                  <span>Tap to view certificate</span>
                   <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                   </svg>

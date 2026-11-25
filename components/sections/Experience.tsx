@@ -111,40 +111,30 @@ export default function Experience() {
           Experience<span className="text-[#D9A15C]">.</span>
         </h2>
 
-        <div className="relative border-l border-white/10 ml-4 md:ml-12 space-y-16">
+        <div className="relative border-l-2 border-primary/20 ml-4 md:ml-12">
           {experiences.map((exp, idx) => (
             <div
               key={idx}
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="relative pl-8 md:pl-12 group"
+              className="mb-24 relative pl-10 md:pl-16 group"
             >
-              <div className="timeline-dot absolute -left-[7px] top-2.5 w-3.5 h-3.5 rounded-full border-2 border-[#D9A15C] bg-[#0A0B0F] z-10 transition-all duration-300 group-hover:scale-125 group-hover:bg-[#D9A15C] shadow-[0_0_12px_rgba(217,161,92,0.4)]" />
+              <div className="timeline-dot absolute -left-[11px] top-2 w-4 h-4 rounded-full border-2 border-[#D9A15C]/60 bg-[#0A0B0F] z-10 transition-all duration-500 group-hover:border-[#D9A15C] group-hover:bg-[#D9A15C]/20" />
 
-              <div className="reveal-text transition-transform duration-300 group-hover:translate-x-1">
-                <div className="flex flex-wrap items-center gap-3 mb-3">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#D9A15C] px-2.5 py-1 rounded-md bg-[#D9A15C]/10 border border-[#D9A15C]/20">
-                    {exp.date}
-                  </span>
-                  <span className="text-xs font-mono text-[#9A9AA5] tracking-wide">
-                    {exp.location}
-                  </span>
-                </div>
-
-                <div className="flex flex-col md:flex-row md:items-baseline md:justify-between gap-1 md:gap-4 mb-3">
-                  <h3 className="text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] tracking-tight">
-                    {exp.company}
-                  </h3>
-                  <span className="text-base font-semibold text-[#D9A15C] font-heading">
-                    {exp.role}
-                  </span>
-                </div>
-
+              <div className="reveal-text transition-transform duration-500 group-hover:translate-x-1">
+                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-5">
+                  {exp.date} &bull; {exp.location}
+                </p>
+                <h3 
+                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em]"
+                  data-text={exp.company}
+                >
+                  {exp.company}
+                </h3>
+                <p className="text-[#EDEDF2] text-lg font-medium leading-[1.7] mb-4">{exp.role}</p>
                 {exp.description && (
-                  <p className="text-[#D1D5DB] text-sm md:text-base leading-[1.75] font-normal max-w-3xl">
-                    {exp.description}
-                  </p>
+                  <p className="text-[#9A9AA5] text-sm md:text-base font-light leading-[1.7]">{exp.description}</p>
                 )}
               </div>
             </div>

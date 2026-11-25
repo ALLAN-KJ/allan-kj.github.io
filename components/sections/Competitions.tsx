@@ -99,56 +99,46 @@ export default function Competitions() {
           Competitions<span className="text-[#D9A15C]">.</span>
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="flex flex-col gap-16 items-center">
           {competitions.map((comp, idx) => (
             <div
               key={idx}
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className={`bg-[#0F111A]/90 border border-white/10 rounded-2xl p-7 md:p-8 shadow-lg relative overflow-hidden group hover:border-[#D9A15C]/40 hover:-translate-y-1 transition-all duration-300 ease-out cursor-default flex flex-col justify-between ${
-                idx === 0 ? "md:col-span-2 md:p-10" : ""
-              }`}
+              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 md:p-12 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
             >
-              <div>
-                <div className="flex items-center justify-between gap-4 mb-4 pb-3 border-b border-white/5">
-                  <span className="font-mono text-xs uppercase tracking-widest text-[#D9A15C]">
-                    {comp.date}
-                  </span>
-                  {idx === 0 && (
-                    <span className="font-mono text-xs uppercase tracking-wider text-[#D9A15C] px-2.5 py-0.5 rounded-full bg-[#D9A15C]/10 border border-[#D9A15C]/20">
-                      Featured Hackathon
-                    </span>
-                  )}
-                </div>
-
-                <h3 className={`font-bold font-heading text-[#EDEDF2] mb-4 tracking-tight group-hover:text-white transition-colors ${
-                  idx === 0 ? "text-2xl md:text-3xl" : "text-xl md:text-2xl"
-                }`}>
+              <div className="absolute top-0 right-0 p-8 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
+                <span className="text-[10rem] text-[#D9A15C] font-black leading-none">
+                  {String(idx + 1).padStart(2, "0")}
+                </span>
+              </div>
+              
+              <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
+                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
+                  {comp.date}
+                </p>
+                <h3 
+                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-7 tracking-[-0.02em]"
+                  data-text={comp.title}
+                >
                   {comp.title}
                 </h3>
-
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-3">
                   {comp.events.map((event, eIdx) => (
                     <span 
                       key={eIdx}
-                      className="px-3 py-1 rounded-full bg-white/[0.03] border border-white/10 text-[#D4D4D8] text-xs font-mono tracking-wide group-hover:border-[#D9A15C]/30 transition-colors"
+                      className="px-4 py-2 rounded-full bg-white/5 border border-white/8 text-[#9A9AA5] text-xs font-medium tracking-wide group-hover:border-[#D9A15C]/20 transition-colors duration-300"
                     >
                       {event}
                     </span>
                   ))}
                 </div>
-
                 {comp.description && (
-                  <p className="text-[#D1D5DB] text-sm md:text-base leading-[1.7] font-normal">
+                  <p className="mt-5 text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
                     {comp.description}
                   </p>
                 )}
-              </div>
-
-              <div className="mt-6 pt-3 border-t border-white/5 flex items-center justify-between text-xs text-[#9A9AA5] font-mono">
-                <span>Entry #{String(idx + 1).padStart(2, "0")}</span>
-                <span className="group-hover:text-[#D9A15C] transition-colors">Competitive Record →</span>
               </div>
             </div>
           ))}
