@@ -10,6 +10,7 @@ export interface CertificateData {
   image: string;
   credentialId?: string;
   date?: string;
+  verifyUrl?: string;
 }
 
 interface CertificateModalProps {
@@ -101,8 +102,8 @@ export default function CertificateModal({
             <Image
               src={certificate.image}
               alt={certificate.title}
-              width={1400}
-              height={950}
+              width={1584}
+              height={1224}
               className="max-h-[60vh] w-auto max-w-full object-contain rounded-lg border border-white/5 shadow-2xl transition-transform duration-300 group-hover:scale-[1.01]"
               priority
               quality={95}
@@ -122,11 +123,25 @@ export default function CertificateModal({
           </div>
 
           <div className="flex items-center gap-3 shrink-0">
+            {certificate.verifyUrl && (
+              <a
+                href={certificate.verifyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#D9A15C]/15 hover:bg-[#D9A15C]/25 border border-[#D9A15C]/40 text-xs md:text-sm font-medium text-[#D9A15C] transition-all duration-200 cursor-pointer"
+              >
+                <span>Verify Credential</span>
+                <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </a>
+            )}
+
             <a
               href={certificate.image}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-[#D9A15C]/15 border border-white/10 hover:border-[#D9A15C]/40 text-xs md:text-sm font-medium text-[#EDEDF2] hover:text-[#D9A15C] transition-all duration-200 cursor-pointer"
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-white/5 hover:bg-white/15 border border-white/10 text-xs md:text-sm font-medium text-[#EDEDF2] hover:text-[#D9A15C] transition-all duration-200 cursor-pointer"
             >
               <span>View Full Resolution</span>
               <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -146,4 +161,3 @@ export default function CertificateModal({
     </div>
   );
 }
-

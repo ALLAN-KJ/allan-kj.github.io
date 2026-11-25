@@ -60,6 +60,29 @@ export default function Certifications() {
 
   const certifications: CertificateData[] = [
     {
+      title: "Introduction to IoT",
+      issuer: "Cisco Networking Academy",
+      description: "Student-level credential verifying course completion for Introduction to Internet of Things, covering IoT architecture, digital transformation, automation, and cybersecurity.",
+      image: "/certificates/cisco-iot.png",
+      date: "Mar 22, 2026",
+    },
+    {
+      title: "Red Hat System Administration I (RH124 - RHA) - Ver. 10",
+      issuer: "Red Hat",
+      description: "Official 40-hour certificate of attendance covering core Linux command-line skills, user/group administration, storage, and systemd service management.",
+      image: "/certificates/redhat-rh124.png",
+      date: "March 22, 2026",
+      verifyUrl: "https://www.credly.com/badges/d96a0650-ceea-430e-85cd-f56ea4f194a0",
+    },
+    {
+      title: "Artificial Intelligence Fundamentals",
+      issuer: "IBM SkillsBuild",
+      description: "Professional credential satisfying the requirements for Artificial Intelligence Fundamentals, machine learning methodologies, and ethical AI architectures.",
+      image: "/certificates/ibm-ai-fundamentals.png",
+      date: "Oct 28, 2026",
+      verifyUrl: "https://www.credly.com/badges/49bc6703-d622-46a9-a8c5-1a1a95fdd993",
+    },
+    {
       title: "Oracle Java Foundations (1Z0-811)",
       issuer: "Oracle",
       description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
