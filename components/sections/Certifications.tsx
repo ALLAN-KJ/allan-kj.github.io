@@ -17,20 +17,22 @@ export default function Certifications() {
     let headingSplit: SplitType | null = null;
 
     const ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
+      itemsRef.current.forEach((item, idx) => {
         if (!item) return;
         
         gsap.fromTo(
           item,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 40, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
-            ease: "power3.out",
-            duration: 0.8,
+            scale: 1,
+            ease: "back.out(1.4)",
+            duration: 0.75,
+            delay: idx * 0.05,
             scrollTrigger: {
               trigger: item,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
             },
           }
@@ -111,12 +113,14 @@ export default function Certifications() {
 
   return (
     <section id="certifications" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 
-          className="certifications-heading spider-glitch text-[clamp(2.5rem,8vw,5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.03em] leading-[0.92]"
+          className="certifications-heading spider-glitch text-[clamp(2.5rem,7.5vw,5.5rem)] md:text-[6.5rem] lg:text-[8rem] xl:text-[9.5rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9]"
           data-text="Certifications."
         >
-          Certifications<span className="text-[#D9A15C]">.</span>
+          <span className="inline-block whitespace-nowrap">
+            Certifications<span className="text-[#D9A15C]">.</span>
+          </span>
         </h2>
 
         <div className="flex flex-col gap-10 items-center">
@@ -136,7 +140,7 @@ export default function Certifications() {
               role="button"
               tabIndex={0}
               aria-label={`View ${cert.title} certificate`}
-              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
+              className="gpu-accel will-change-transform w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
             >
               {/* Desktop Hover Pill */}
               <div className="absolute top-8 right-8 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[0.7rem] text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
@@ -151,7 +155,7 @@ export default function Certifications() {
                   {cert.issuer}
                 </p>
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-4 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
                   data-text={cert.title}
                 >
                   {cert.title}

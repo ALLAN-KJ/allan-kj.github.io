@@ -10,8 +10,7 @@ export default function Header() {
   const { scrollY, scrollYProgress } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
   
-  // Nav bar shrinks as you scroll
-  const navHeight = useTransform(scrollY, [0, 100], [80, 60]);
+  // Nav bar visual styling as you scroll (no height layout shifts)
   const navBackground = useTransform(scrollY, [0, 100], ["rgba(10, 10, 10, 0)", "rgba(10, 10, 11, 0.9)"]);
   const navBackdropFilter = useTransform(scrollY, [0, 100], ["blur(0px)", "blur(24px)"]);
   
@@ -73,12 +72,11 @@ export default function Header() {
     <>
       <motion.header
         style={{
-          height: navHeight,
           backgroundColor: navBackground,
           backdropFilter: navBackdropFilter,
           WebkitBackdropFilter: navBackdropFilter
         }}
-        className="fixed top-0 left-0 right-0 z-50 flex items-center justify-between px-6 border-b border-primary/20 shadow-lg shadow-black/20 transition-colors"
+        className="fixed top-0 left-0 right-0 z-50 h-16 md:h-20 flex items-center justify-between px-6 border-b border-primary/20 shadow-lg shadow-black/20 transition-colors"
       >
         <div className="text-sm font-semibold font-heading text-[#EDEDF2] tracking-[0.06em] uppercase hover:text-[#D9A15C] transition-colors">
           Allan K J

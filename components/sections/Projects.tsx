@@ -53,16 +53,17 @@ export default function Projects() {
     const cards = track.querySelectorAll(".project-card");
     gsap.fromTo(
       cards,
-      { y: 50, opacity: 0 },
+      { y: 40, opacity: 0, scale: 0.95 },
       {
         y: 0,
         opacity: 1,
-        stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
+        scale: 1,
+        stagger: 0.09,
+        duration: 0.75,
+        ease: "back.out(1.3)",
         scrollTrigger: {
           trigger: pinWrapper,
-          start: "top 80%",
+          start: "top 82%",
           once: true,
         },
       }
@@ -161,7 +162,7 @@ export default function Projects() {
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 md:pt-40 md:pb-24 text-center md:text-left">
         <h2
           ref={headingRef}
-          className="projects-heading group text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] tracking-[-0.05em] leading-[0.9] cursor-pointer"
+          className="projects-heading group text-[clamp(3.2rem,8.5vw,7.5rem)] md:text-[8.5rem] lg:text-[10.5rem] xl:text-[12rem] font-black font-heading text-[#EDEDF2] tracking-[-0.05em] leading-[0.9] cursor-pointer"
         >
           <span className="spider-glitch block" data-text="Selected">Selected</span>
           <span className="spider-glitch block" data-text="Works.">
@@ -222,7 +223,7 @@ export default function Projects() {
 
                 {/* Title */}
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                   data-text={project.title}
                 >
                   {project.title}

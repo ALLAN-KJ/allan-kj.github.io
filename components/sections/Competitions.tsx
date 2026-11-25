@@ -15,20 +15,22 @@ export default function Competitions() {
     let headingSplit: SplitType | null = null;
 
     const ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
+      itemsRef.current.forEach((item, idx) => {
         if (!item) return;
         
         gsap.fromTo(
           item,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 40, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
-            ease: "power3.out",
-            duration: 0.8,
+            scale: 1,
+            ease: "back.out(1.4)",
+            duration: 0.75,
+            delay: idx * 0.05,
             scrollTrigger: {
               trigger: item,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
             },
           }
@@ -91,12 +93,14 @@ export default function Competitions() {
 
   return (
     <section id="competitions" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-6">
         <h2 
-          className="competitions-heading spider-glitch text-[clamp(2.5rem,8vw,5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.03em] leading-[0.92]"
+          className="competitions-heading spider-glitch text-[clamp(2.5rem,7.5vw,5.5rem)] md:text-[6.5rem] lg:text-[8rem] xl:text-[9.5rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9]"
           data-text="Competitions."
         >
-          Competitions<span className="text-[#D9A15C]">.</span>
+          <span className="inline-block whitespace-nowrap">
+            Competitions<span className="text-[#D9A15C]">.</span>
+          </span>
         </h2>
 
         <div className="flex flex-col gap-16 items-center">
@@ -106,7 +110,7 @@ export default function Competitions() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 md:p-12 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
+              className="gpu-accel will-change-transform w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 md:p-12 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
             >
               <div className="absolute top-0 right-0 p-8 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
                 <span className="text-[10rem] text-[#D9A15C] font-black leading-none">
@@ -119,7 +123,7 @@ export default function Competitions() {
                   {comp.date}
                 </p>
                 <h3 
-                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-7 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
                   data-text={comp.title}
                 >
                   {comp.title}

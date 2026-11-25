@@ -10,12 +10,12 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9, // Snappy, zero-float 60/120Hz responsiveness on trackpads and wheels
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      syncTouch: false, // Native 120Hz hardware momentum on mobile/touch screens (zero touch lag)
+      syncTouch: false, // 100% native hardware 60/120Hz momentum on touch devices (zero touch lag)
       wheelMultiplier: 1.0,
       touchMultiplier: 1.0,
       autoResize: true,
@@ -29,8 +29,9 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     };
 
     gsap.ticker.add(rafHandler);
-    // Smooth frame-drop recovery without violent jumps or freezes
-    gsap.ticker.lagSmoothing(500, 33);
+    // Crucial: lagSmoothing(0) ensures GSAP ticker timestamps are strictly monotonic.
+    // This completely eliminates scroll position jumps and time-dilation stutters.
+    gsap.ticker.lagSmoothing(0);
 
     // Refresh ScrollTrigger once DOM layout stabilizes
     const refreshTimer = setTimeout(() => {

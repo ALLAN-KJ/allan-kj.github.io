@@ -24,15 +24,16 @@ export default function Experience() {
         if (textElement && dotElement) {
           gsap.fromTo(
             textElement,
-            { opacity: 0, x: -20 },
+            { opacity: 0, x: -30, scale: 0.96 },
             {
               opacity: 1,
               x: 0,
-              ease: "power3.out",
-              duration: 0.8,
+              scale: 1,
+              ease: "back.out(1.3)",
+              duration: 0.75,
               scrollTrigger: {
                 trigger: item,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
               },
             }
@@ -40,15 +41,16 @@ export default function Experience() {
 
           gsap.fromTo(
             dotElement,
-            { scale: 0, backgroundColor: "#3f3f46" },
+            { scale: 0, opacity: 0, backgroundColor: "#3f3f46" },
             {
               scale: 1,
+              opacity: 1,
               backgroundColor: "#D9A15C",
-              ease: "back.out(1.7)",
+              ease: "back.out(2.2)",
               duration: 0.6,
               scrollTrigger: {
                 trigger: item,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
               },
             }
@@ -105,7 +107,7 @@ export default function Experience() {
     <section id="experience" ref={containerRef} className="py-48 w-full bg-[#0A0B0F] relative overflow-hidden">
       <div className="max-w-6xl mx-auto px-6 relative z-10">
         <h2 
-          className="experience-heading spider-glitch text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] mb-20 tracking-[-0.05em] leading-[0.9]"
+          className="experience-heading spider-glitch text-[clamp(3.2rem,8.5vw,7.5rem)] md:text-[8.5rem] lg:text-[10.5rem] xl:text-[12rem] font-black font-heading text-[#EDEDF2] mb-20 tracking-[-0.05em] leading-[0.9]"
           data-text="Experience."
         >
           Experience<span className="text-[#D9A15C]">.</span>
@@ -127,7 +129,7 @@ export default function Experience() {
                   {exp.date} &bull; {exp.location}
                 </p>
                 <h3 
-                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-[2rem] font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
                   data-text={exp.company}
                 >
                   {exp.company}
