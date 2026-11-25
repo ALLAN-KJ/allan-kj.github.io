@@ -112,7 +112,7 @@ export default function Home() {
               >
                 Allan K J
               </h1>
-              <p className="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-[#9A9AA5] leading-[1.7] font-light pointer-events-auto">
+              <p className="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-[#D1D5DB] leading-relaxed font-normal pointer-events-auto">
                 Cybersecurity specialist and creative developer engineering immersive 3D web applications, network defense systems, and full-stack software architectures. B.Tech CSE (Cyber Security) @ Karunya.
               </p>
             </div>

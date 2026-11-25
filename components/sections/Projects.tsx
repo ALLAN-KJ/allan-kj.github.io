@@ -111,6 +111,7 @@ export default function Projects() {
     {
       title: "Personal Portfolio Website",
       category: "Interactive Portfolio",
+      tags: ["Next.js 15", "GSAP", "Lenis", "Tailwind"],
       description:
         "Built with Next.js 15, TypeScript, GSAP, Tailwind CSS, and Lenis smooth scrolling. Features an interactive bash terminal emulator, Miles Morales-inspired kinetic glitch typography, and physics-based continuous momentum scrolling.",
       link: null,
@@ -120,6 +121,7 @@ export default function Projects() {
     {
       title: "Smart India Hackathon (SIH) 2026",
       category: "Problem Statement 26160",
+      tags: ["Next.js", "REST APIs", "Node.js", "Vercel"],
       description:
         "Built and deployed a full-stack solution for SIH 2026 Problem Statement 26160. Deployed frontend on Vercel and backend on Render; live and accessible to all users.",
       link: "https://sih-2026-frontend-eight.vercel.app",
@@ -128,6 +130,7 @@ export default function Projects() {
     {
       title: "Student LMS Platform",
       category: "Full-Stack Web App",
+      tags: ["Full-Stack", "API Integration", "Render"],
       description:
         "Full-stack learning management system built during a Qaroo internship — features API integration and live student-facing functionality.",
       link: "https://student-lms-vds8.onrender.com/",
@@ -136,6 +139,7 @@ export default function Projects() {
     {
       title: "GHOST",
       category: "AI Voice Assistant",
+      tags: ["Python", "ElevenLabs API", "Automation"],
       description:
         "Building a voice-controlled AI assistant that sends WhatsApp messages and opens websites like Google and YouTube.",
       link: null,
@@ -143,7 +147,8 @@ export default function Projects() {
     },
     {
       title: "Education-Themed 3D Website",
-      category: "Interactive 3D Web (In Progress)",
+      category: "Interactive 3D Web",
+      tags: ["Three.js", "WebGL", "Interactive 3D"],
       description:
         "Designing a book-shaped, themed interactive 3D website for education.",
       link: null,
@@ -221,15 +226,24 @@ export default function Projects() {
                 </div>
 
                 {/* Title */}
-                <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
-                  data-text={project.title}
-                >
+                <h3 className="text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white">
                   {project.title}
                 </h3>
 
+                {/* Tech Chips */}
+                <div className="flex flex-wrap gap-1.5 mb-3">
+                  {project.tags.map((tag, tIdx) => (
+                    <span
+                      key={tIdx}
+                      className="px-2.5 py-0.5 rounded-md bg-white/[0.04] border border-white/10 text-[0.7rem] font-mono text-[#D4D4D8]"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
                 {/* Description */}
-                <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
+                <p className="text-[#D1D5DB] text-sm leading-[1.7] font-normal">
                   {project.description}
                 </p>
               </div>

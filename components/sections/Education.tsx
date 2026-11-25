@@ -97,30 +97,50 @@ export default function Education() {
           Education<span className="text-[#D9A15C]">.</span>
         </h2>
 
-        <div className="relative border-l-2 border-primary/20 ml-4 md:ml-12">
+        <div className="max-w-4xl mx-auto">
           {educationList.map((edu, idx) => (
             <div
               key={idx}
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="mb-24 relative pl-10 md:pl-16 group"
+              className="bg-[#0F111A]/90 border border-white/10 rounded-2xl p-8 md:p-12 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out shadow-xl relative overflow-hidden group"
             >
-              <div className="timeline-dot absolute -left-[11px] top-2 w-4 h-4 rounded-full border-2 border-[#D9A15C]/60 bg-[#0A0B0F] z-10 transition-all duration-500 group-hover:border-[#D9A15C] group-hover:bg-[#D9A15C]/20" />
+              <div className="flex flex-col md:flex-row md:items-start justify-between gap-6 mb-8 pb-6 border-b border-white/5">
+                <div>
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="font-mono text-xs uppercase tracking-widest text-[#D9A15C] px-3 py-1 rounded-full bg-[#D9A15C]/10 border border-[#D9A15C]/20">
+                      B.Tech Undergraduate
+                    </span>
+                    <span className="font-mono text-xs text-[#9A9AA5] tracking-wide">
+                      {edu.location}
+                    </span>
+                  </div>
+                  <h3 className="text-2xl md:text-4xl font-bold font-heading text-[#EDEDF2] tracking-tight">
+                    {edu.institution}
+                  </h3>
+                </div>
 
-              <div className="reveal-text transition-transform duration-500 group-hover:translate-x-1">
-                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-5">
-                  {edu.location}
-                </p>
-                <h3 
-                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em]"
-                  data-text={edu.institution}
-                >
-                  {edu.institution}
-                </h3>
-                <p className="text-[#EDEDF2] text-xl font-medium leading-[1.7] mb-2">{edu.degree}</p>
-                <p className="text-[#9A9AA5] text-base font-light leading-[1.7] mb-2">{edu.specialization}</p>
-                <p className="text-[#D9A15C]/80 text-sm font-medium tracking-wide">{edu.cgpa}</p>
+                <div className="flex flex-col items-start md:items-end flex-shrink-0">
+                  <span className="font-mono text-xs text-[#9A9AA5] uppercase tracking-wider mb-1">Cumulative Grade</span>
+                  <span className="font-mono text-lg md:text-xl font-bold text-[#D9A15C] px-3 py-1 rounded-lg bg-[#D9A15C]/10 border border-[#D9A15C]/30">
+                    {edu.cgpa}
+                  </span>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-[#D1D5DB]">
+                <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5">
+                  <span className="font-mono text-xs text-[#9A9AA5] uppercase tracking-wider block mb-2">Program</span>
+                  <p className="text-base md:text-lg font-medium text-[#EDEDF2]">{edu.degree}</p>
+                </div>
+                <div className="p-5 rounded-xl bg-white/[0.02] border border-white/5">
+                  <span className="font-mono text-xs text-[#9A9AA5] uppercase tracking-wider block mb-2">Major Focus</span>
+                  <p className="text-base md:text-lg font-medium text-[#D9A15C] flex items-center gap-2">
+                    <span className="w-2 h-2 rounded-full bg-[#D9A15C]" />
+                    {edu.specialization}
+                  </p>
+                </div>
               </div>
             </div>
           ))}

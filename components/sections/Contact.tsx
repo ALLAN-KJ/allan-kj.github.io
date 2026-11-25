@@ -76,7 +76,7 @@ export default function Contact() {
           </span>
         </h2>
         
-        <p className="text-base md:text-lg text-[#9A9AA5] mb-16 font-light max-w-lg mx-auto leading-[1.7]">
+        <p className="text-base md:text-lg text-[#D1D5DB] mb-16 font-normal max-w-lg mx-auto leading-relaxed">
           Always open for a chat about cybersecurity, development, or new opportunities.
         </p>
 

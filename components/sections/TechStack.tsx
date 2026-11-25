@@ -68,7 +68,7 @@ export default function TechStack() {
           {[...techRow1, ...(reducedMotion ? [] : techRow1), ...(reducedMotion ? [] : techRow1), ...(reducedMotion ? [] : techRow1)].map((tech, idx) => (
             <div
               key={`row1-${idx}`}
-              className="px-6 py-3 rounded-full border border-white/10 bg-[#0F111A] text-[#9A9AA5] text-sm md:text-base font-medium whitespace-nowrap transition-colors hover:text-[#EDEDF2] hover:border-[#D9A15C]/30"
+              className="px-6 py-3 rounded-full border border-white/10 bg-[#0F111A]/90 text-[#D4D4D8] text-sm md:text-base font-medium whitespace-nowrap transition-all hover:text-[#EDEDF2] hover:border-[#D9A15C]/40 hover:bg-[#D9A15C]/5 shadow-sm"
             >
               {tech}
             </div>
@@ -80,7 +80,7 @@ export default function TechStack() {
           {[...techRow2, ...(reducedMotion ? [] : techRow2), ...(reducedMotion ? [] : techRow2), ...(reducedMotion ? [] : techRow2)].map((tech, idx) => (
             <div
               key={`row2-${idx}`}
-              className="px-6 py-3 rounded-full border border-white/10 bg-[#0F111A] text-[#9A9AA5] text-sm md:text-base font-medium whitespace-nowrap transition-colors hover:text-[#EDEDF2] hover:border-[#D9A15C]/30"
+              className="px-6 py-3 rounded-full border border-white/10 bg-[#0F111A]/90 text-[#D4D4D8] text-sm md:text-base font-medium whitespace-nowrap transition-all hover:text-[#EDEDF2] hover:border-[#D9A15C]/40 hover:bg-[#D9A15C]/5 shadow-sm"
             >
               {tech}
             </div>

@@ -92,7 +92,7 @@ export default function Header() {
                 key={link.name} 
                 href={link.href} 
                 id={`nav-${link.id}`}
-                className="nav-link glitch-hover text-[0.7rem] font-medium tracking-[0.12em] uppercase text-[#9A9AA5] hover:text-[#EDEDF2] transition-all duration-300 p-2 min-h-[44px] inline-flex items-center focus-visible:text-[#EDEDF2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
+                className="nav-link glitch-hover text-[0.75rem] font-medium tracking-[0.14em] uppercase text-[#A1A1AA] hover:text-[#EDEDF2] transition-all duration-300 p-2 min-h-[44px] inline-flex items-center focus-visible:text-[#EDEDF2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
               >
                 {link.name}
               </Link>
