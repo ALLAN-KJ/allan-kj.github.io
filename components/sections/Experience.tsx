@@ -134,9 +134,9 @@ export default function Experience() {
                 >
                   {exp.company}
                 </h3>
-                <p className="text-[#EDEDF2] text-lg font-medium leading-[1.7] mb-4">{exp.role}</p>
+                <p className="text-[#EDEDF2] text-xl md:text-2xl font-medium leading-[1.6] mb-5">{exp.role}</p>
                 {exp.description && (
-                  <p className="text-[#9A9AA5] text-sm md:text-base font-light leading-[1.7]">{exp.description}</p>
+                  <p className="text-[#9A9AA5] text-base md:text-lg font-light leading-[1.8]">{exp.description}</p>
                 )}
               </div>
             </div>

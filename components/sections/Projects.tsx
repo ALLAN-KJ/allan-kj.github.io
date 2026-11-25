@@ -208,7 +208,7 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[420px] max-h-[66vh] md:h-[480px] lg:h-[500px] bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.12)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[460px] lg:w-[500px] xl:w-[520px] md:max-w-none h-[460px] max-h-[70vh] md:h-[540px] lg:h-[560px] bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-9 lg:p-10 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.12)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
             >
               <div>
                 {/* Card Header: Category Tag & Large Index Counter */}
@@ -230,7 +230,7 @@ export default function Projects() {
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
+                <p className="text-[#9A9AA5] text-base md:text-lg leading-[1.8] font-light">
                   {project.description}
                 </p>
               </div>
@@ -261,7 +261,7 @@ export default function Projects() {
 
           {/* Concluding Card: Explore More on GitHub & Contact */}
           <div
-            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[420px] max-h-[66vh] md:h-[480px] lg:h-[500px] bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.18)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[460px] lg:w-[500px] xl:w-[520px] md:max-w-none h-[460px] max-h-[70vh] md:h-[540px] lg:h-[560px] bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-9 lg:p-10 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.18)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
           >
             <div>
               {/* Card Header: Category Tag & GitHub SVG Link */}
