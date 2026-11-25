@@ -109,18 +109,21 @@ export default function Education() {
               <div className="timeline-dot absolute -left-[11px] top-2 w-4 h-4 rounded-full border-2 border-[#D9A15C]/60 bg-[#0A0B0F] z-10 transition-all duration-500 group-hover:border-[#D9A15C] group-hover:bg-[#D9A15C]/20" />
 
               <div className="reveal-text transition-transform duration-500 group-hover:translate-x-1">
-                <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-5">
+                <p className="text-[#D9A15C] font-semibold tracking-[0.14em] uppercase text-xs md:text-sm mb-5">
                   {edu.location}
                 </p>
                 <h3 
-                  className="spider-glitch text-3xl md:text-4xl font-bold font-heading text-[#EDEDF2] mb-3 tracking-[-0.02em]"
+                  className="spider-glitch text-2xl md:text-3xl lg:text-4xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight"
                   data-text={edu.institution}
                 >
                   {edu.institution}
                 </h3>
-                <p className="text-[#EDEDF2] text-xl font-medium leading-[1.7] mb-2">{edu.degree}</p>
-                <p className="text-[#9A9AA5] text-base font-light leading-[1.7] mb-2">{edu.specialization}</p>
-                <p className="text-[#D9A15C]/80 text-sm font-medium tracking-wide">{edu.cgpa}</p>
+                <p className="text-[#EDEDF2] text-xl md:text-2xl font-medium leading-[1.6] mb-3">{edu.degree}</p>
+                <p className="text-[#9A9AA5] text-base md:text-lg font-light leading-[1.7] mb-3">{edu.specialization}</p>
+                <p className="text-[#D9A15C] text-base md:text-lg font-semibold tracking-wide flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#D9A15C] inline-block animate-pulse" />
+                  {edu.cgpa}
+                </p>
               </div>
             </div>
           ))}

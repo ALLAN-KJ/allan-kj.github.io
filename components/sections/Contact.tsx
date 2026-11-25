@@ -76,7 +76,7 @@ export default function Contact() {
           </span>
         </h2>
         
-        <p className="text-base md:text-lg text-[#9A9AA5] mb-16 font-light max-w-lg mx-auto leading-[1.7]">
+        <p className="text-lg md:text-xl text-[#9A9AA5] mb-16 font-light max-w-xl mx-auto leading-[1.8]">
           Always open for a chat about cybersecurity, development, or new opportunities.
         </p>
 
@@ -98,16 +98,16 @@ export default function Contact() {
             href="https://linkedin.com/in/allan-k-j-21389838a"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium tracking-[0.12em] uppercase text-[#9A9AA5] hover:text-[#D9A15C] transition-all duration-300 min-h-[44px] inline-flex items-center focus-visible:text-[#D9A15C] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
+            className="text-sm md:text-base font-semibold tracking-[0.14em] uppercase text-[#9A9AA5] hover:text-[#D9A15C] transition-all duration-300 min-h-[44px] inline-flex items-center focus-visible:text-[#D9A15C] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
           >
             LinkedIn
           </a>
-          <span className="w-1 h-1 rounded-full bg-[#D9A15C]/40" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C]/60" />
           <a
             href="https://github.com/ALLAN-KJ"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium tracking-[0.12em] uppercase text-[#9A9AA5] hover:text-[#D9A15C] transition-all duration-300 min-h-[44px] inline-flex items-center focus-visible:text-[#D9A15C] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
+            className="text-sm md:text-base font-semibold tracking-[0.14em] uppercase text-[#9A9AA5] hover:text-[#D9A15C] transition-all duration-300 min-h-[44px] inline-flex items-center focus-visible:text-[#D9A15C] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
           >
             GitHub
           </a>
