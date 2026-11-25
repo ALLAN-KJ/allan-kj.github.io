@@ -42,7 +42,7 @@ export default function Projects() {
             scrollTrigger: {
               trigger: heading,
               start: "top 85%",
-              toggleActions: "play none none reverse",
+              once: true,
             },
           }
         );
@@ -63,7 +63,7 @@ export default function Projects() {
         scrollTrigger: {
           trigger: pinWrapper,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
       }
     );
@@ -90,7 +90,7 @@ export default function Projects() {
         start: "top top",
         end: () => `+=${Math.max(window.innerHeight * 1.3, getScrollAmount() * 1.15)}`,
         pin: true,
-        scrub: 0.25, // Low-latency scrub locked 1:1 to Lenis high-refresh momentum
+        scrub: 0.5, // Buttery-smooth scrub synchronized with Lenis without jitter
         anticipatePin: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {

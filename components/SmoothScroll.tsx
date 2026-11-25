@@ -7,52 +7,46 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// Global ultra-high refresh rate performance configuration (120Hz / 144Hz / 240Hz / 360Hz)
-gsap.config({
-  force3D: true, // Enforces permanent GPU compositing layers for zero-stutter hardware transforms
-  nullTargetWarn: false,
-});
-
-ScrollTrigger.config({
-  limitCallbacks: true, // Synchronizes trigger callbacks strictly to the hardware display refresh rate
-  ignoreMobileResize: true, // Prevents mobile URL-bar collapsing from triggering expensive layout recalculations
-});
-
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
-    // Ultra-high refresh rate calibrated Lenis instance
     const lenis = new Lenis({
-      duration: 1.15, // Razor-sharp, velvety momentum curve tuned for high-refresh monitors
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Exponential ease-out
+      duration: 1.2,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      syncTouch: true, // Smooth touch-based scrolling on mobile 120Hz displays (ProMotion / AMOLED)
-      syncTouchLerp: 0.085, // Gliding momentum with instantaneous responsiveness
-      touchInertiaExponent: 1.9, // Natural fluid inertia when finger lifts
-      wheelMultiplier: 1.0, // 1:1 precision with high-DPI mice and Apple trackpads
-      touchMultiplier: 1.5, // Responsive yet silky mobile touch tracking
+      syncTouch: false, // Native 120Hz hardware momentum on mobile/touch screens (zero touch lag)
+      wheelMultiplier: 1.0,
+      touchMultiplier: 1.0,
       autoResize: true,
     });
 
     lenis.on("scroll", ScrollTrigger.update);
-    (window as any).lenis = lenis;
+    (window as unknown as { lenis?: Lenis }).lenis = lenis;
 
-    // Lock Lenis strictly to GSAP's native hardware requestAnimationFrame ticker
-    // Runs synchronized with the display's native refresh rate (60Hz, 120Hz, 144Hz, 240Hz)
     const rafHandler = (time: number) => {
       lenis.raf(time * 1000);
     };
 
     gsap.ticker.add(rafHandler);
-    // lagSmoothing(0) prevents GSAP from dropping frames or causing jumpy stutters on 120Hz/144Hz displays
-    gsap.ticker.lagSmoothing(0);
+    // Smooth frame-drop recovery without violent jumps or freezes
+    gsap.ticker.lagSmoothing(500, 33);
 
-    // Initial recalculation to ensure scroll triggers are synced with high-refresh viewport metrics
-    ScrollTrigger.refresh();
+    // Refresh ScrollTrigger once DOM layout stabilizes
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 200);
+
+    const handleLoad = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("load", handleLoad);
 
     return () => {
+      clearTimeout(refreshTimer);
+      window.removeEventListener("load", handleLoad);
       gsap.ticker.remove(rafHandler);
+      (window as unknown as { lenis?: Lenis }).lenis = undefined;
       lenis.destroy();
     };
   }, []);

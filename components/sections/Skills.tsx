@@ -29,7 +29,7 @@ export default function Skills() {
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 75%",
-            toggleActions: "play none none reverse",
+            once: true,
           },
         }
       );
@@ -39,7 +39,7 @@ export default function Skills() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         y: 50,
         opacity: 0,

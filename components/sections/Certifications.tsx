@@ -31,7 +31,7 @@ export default function Certifications() {
             scrollTrigger: {
               trigger: item,
               start: "top 85%",
-              toggleActions: "play none none reverse",
+              once: true,
             },
           }
         );
@@ -42,7 +42,7 @@ export default function Certifications() {
         scrollTrigger: {
           trigger: containerRef.current,
           start: "top 80%",
-          toggleActions: "play none none reverse",
+          once: true,
         },
         y: 50,
         opacity: 0,
