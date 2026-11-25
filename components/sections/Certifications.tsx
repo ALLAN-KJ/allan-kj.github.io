@@ -1,13 +1,15 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
+import CertificateModal, { CertificateData } from "@/components/CertificateModal";
 
 export default function Certifications() {
   const containerRef = useRef<HTMLDivElement>(null);
   const itemsRef = useRef<(HTMLDivElement | null)[]>([]);
+  const [selectedCert, setSelectedCert] = useState<CertificateData | null>(null);
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -56,36 +58,45 @@ export default function Certifications() {
     };
   }, []);
 
-  const certifications = [
+  const certifications: CertificateData[] = [
     {
       title: "Introduction to IoT and Digital Transformation",
       issuer: "Cisco Networking Academy",
       description: "Covers IoT architecture, connected device ecosystems, and digital transformation in enterprise IT.",
+      image: "/certificates/cisco-iot.png",
+      credentialId: "CISCO-NETACAD-ALLANKJ-IOT",
     },
     {
       title: "Red Hat System Administration I (RH124, Ver. 10)",
       issuer: "Red Hat (RHA)",
       description: "Covers Linux CLI, filesystem management, user/group administration, and system services.",
+      image: "/certificates/redhat-rh124.png",
+      credentialId: "REDHAT-RHA-RH124-ALLANKJ",
     },
     {
       title: "Oracle Java Foundations (1Z0-811)",
       issuer: "Oracle",
       description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
+      image: "/certificates/oracle-java.png",
+      credentialId: "ORACLE-1Z0-811",
     },
     {
       title: "EC-Council Cybersecurity Workshop",
       issuer: "EC-Council",
       description: "Certificate of Participation — 1 CPE credit.",
+      image: "/certificates/ec-council.png",
     },
     {
       title: "AIORI-3 Workshop on Internet Measurements",
       issuer: "MeitY / NIXI & APNIC Foundation",
       description: "Certificate of Participation — AIORI-3 Student Workshop on Internet Measurements, Karunya Institute of Technology and Sciences, Sept 8, 2026 (ISEA Initiative).",
+      image: "/certificates/aiori3-apnic.png",
     },
     {
       title: "Privacy and Security in Online Social Media",
       issuer: "NPTEL (IIIT Hyderabad)",
       description: "12-week NPTEL online certification (Jul–Oct 2026); consolidated score of 67%.",
+      image: "/certificates/nptel-social-media.png",
     },
   ];
 
@@ -106,8 +117,26 @@ export default function Certifications() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
+              onClick={() => setSelectedCert(cert)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  setSelectedCert(cert);
+                }
+              }}
+              role="button"
+              tabIndex={0}
+              aria-label={`View ${cert.title} certificate`}
+              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
             >
+              {/* Desktop Hover Pill */}
+              <div className="absolute top-8 right-8 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[0.7rem] text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
+                <span>View Certificate</span>
+                <svg className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </div>
+
               <div className="relative z-10 transition-transform duration-500 group-hover:translate-x-1">
                 <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.65rem] mb-4">
                   {cert.issuer}
@@ -121,11 +150,24 @@ export default function Certifications() {
                 <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-light">
                   {cert.description}
                 </p>
+
+                {/* Mobile Tap Pill */}
+                <div className="mt-4 flex sm:hidden items-center gap-1.5 text-xs text-[#D9A15C] font-medium">
+                  <span>Tap to view certificate</span>
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                </div>
               </div>
             </div>
           ))}
         </div>
       </div>
+
+      <CertificateModal
+        certificate={selectedCert}
+        onClose={() => setSelectedCert(null)}
+      />
     </section>
   );
 }

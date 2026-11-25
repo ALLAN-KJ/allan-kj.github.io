@@ -36,6 +36,7 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     });
 
     lenis.on("scroll", ScrollTrigger.update);
+    (window as any).lenis = lenis;
 
     // Lock Lenis strictly to GSAP's native hardware requestAnimationFrame ticker
     // Runs synchronized with the display's native refresh rate (60Hz, 120Hz, 144Hz, 240Hz)
