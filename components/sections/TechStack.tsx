@@ -55,7 +55,7 @@ export default function TechStack() {
       <div className="max-w-7xl mx-auto px-6 mb-20 text-center md:text-left">
         <h2 
           ref={headingRef}
-          className="techstack-heading spider-glitch text-5xl sm:text-6xl md:text-7xl font-black font-heading text-[#EDEDF2] tracking-[-0.04em] leading-[1.0]"
+          className="techstack-heading spider-glitch text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] tracking-[-0.05em] leading-[0.9]"
           data-text="Tech Stack & Tools."
         >
           Tech Stack {"&"} Tools<span className="text-[#D9A15C]">.</span>

@@ -69,7 +69,7 @@ export default function Contact() {
 
 
       <div className="relative z-10 w-full max-w-6xl mx-auto px-6 text-center">
-        <h2 className="contact-heading group text-5xl sm:text-6xl md:text-7xl font-black font-heading text-[#EDEDF2] mb-8 tracking-[-0.04em] leading-[1.0] cursor-pointer">
+        <h2 className="contact-heading group text-[clamp(2.5rem,8vw,5rem)] md:text-[8rem] font-black font-heading text-[#EDEDF2] mb-8 tracking-[-0.04em] leading-[0.92] cursor-pointer">
           <span className="spider-glitch block" data-text="Let's">Let&apos;s</span>
           <span className="spider-glitch block" data-text="Connect.">
             Connect<span className="text-[#D9A15C]">.</span>

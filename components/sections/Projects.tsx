@@ -161,7 +161,7 @@ export default function Projects() {
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 md:pt-40 md:pb-24 text-center md:text-left">
         <h2
           ref={headingRef}
-          className="projects-heading group text-5xl sm:text-6xl md:text-7xl font-black font-heading text-[#EDEDF2] tracking-[-0.04em] leading-[1.0] cursor-pointer"
+          className="projects-heading group text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] tracking-[-0.05em] leading-[0.9] cursor-pointer"
         >
           <span className="spider-glitch block" data-text="Selected">Selected</span>
           <span className="spider-glitch block" data-text="Works.">
@@ -222,14 +222,14 @@ export default function Projects() {
 
                 {/* Title */}
                 <h3 
-                  className="text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                   data-text={project.title}
                 >
                   {project.title}
                 </h3>
 
                 {/* Description */}
-                <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.75] font-normal">
+                <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
                   {project.description}
                 </p>
               </div>
@@ -283,14 +283,14 @@ export default function Projects() {
 
               {/* Title */}
               <h3 
-                className="text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
+                className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
                 data-text="More on GitHub"
               >
                 More on GitHub
               </h3>
 
               {/* Description */}
-              <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.75] font-normal">
+              <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
                 Want to explore more source code, experiments, and ongoing builds? Check out all public repositories on GitHub or reach out to collaborate.
               </p>
             </div>
