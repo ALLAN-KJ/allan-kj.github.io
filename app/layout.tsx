@@ -103,6 +103,17 @@ const websiteJsonLd = {
   },
 };
 
+const profilePageJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  "@id": "https://allan-kj.github.io/#profilepage",
+  dateCreated: "2026-08-19",
+  dateModified: "2026-11-25",
+  mainEntity: {
+    "@id": "https://allan-kj.github.io/#person",
+  },
+};
+
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
@@ -112,6 +123,8 @@ const personJsonLd = {
   url: "https://allan-kj.github.io/",
   image: "https://allan-kj.github.io/icon-512.png",
   jobTitle: "Cybersecurity Specialist & Full-Stack Developer",
+  description:
+    "Cybersecurity specialist and creative developer engineering immersive 3D web applications, network defense systems, and full-stack software architectures.",
   disambiguatingDescription:
     "Cybersecurity specialist, network defense researcher, and creative full-stack software engineer based in India, alumnus of Karunya Institute of Technology and Sciences.",
   knowsAbout: [
@@ -121,17 +134,78 @@ const personJsonLd = {
     "Full-Stack Web Development",
     "Next.js",
     "TypeScript",
+    "Three.js",
     "GSAP Animation",
     "Tailwind CSS",
+    "Linux System Administration",
+    "IoT Architectures",
   ],
   alumniOf: {
     "@type": "CollegeOrUniversity",
     name: "Karunya Institute of Technology and Sciences",
     sameAs: "https://www.karunya.edu/",
   },
+  worksFor: {
+    "@type": "Organization",
+    name: "ZF Group (ZF Friedrichshafen AG)",
+    sameAs: "https://www.zf.com/",
+  },
+  hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Privacy and Security in Online Social Media",
+      credentialCategory: "NPTEL Elite Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "NPTEL (IIIT Hyderabad / IIT Madras)",
+      },
+      url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Red Hat System Administration I (RH124)",
+      credentialCategory: "Certificate of Attendance",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Red Hat",
+      },
+      url: "https://www.credly.com/badges/d96a0650-ceea-430e-85cd-f56ea4f194a0",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Artificial Intelligence Fundamentals",
+      credentialCategory: "Professional Credential",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "IBM SkillsBuild",
+      },
+      url: "https://www.credly.com/badges/49bc6703-d622-46a9-a8c5-1a1a95fdd993",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Oracle Java Foundations (1Z0-811)",
+      credentialCategory: "Professional Credential",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Oracle",
+      },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Introduction to IoT",
+      credentialCategory: "Student Credential",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Cisco Networking Academy",
+      },
+    },
+  ],
   sameAs: [
     "https://github.com/ALLAN-KJ",
     "https://linkedin.com/in/allan-k-j-21389838a",
+    "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
+    "https://www.credly.com/badges/d96a0650-ceea-430e-85cd-f56ea4f194a0",
+    "https://www.credly.com/badges/49bc6703-d622-46a9-a8c5-1a1a95fdd993",
   ],
   mainEntityOfPage: {
     "@type": "WebPage",
@@ -152,6 +226,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(profilePageJsonLd) }}
         />
         <script
           type="application/ld+json"
