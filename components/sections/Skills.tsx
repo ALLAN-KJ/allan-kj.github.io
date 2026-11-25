@@ -19,17 +19,16 @@ export default function Skills() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         itemsRef.current,
-        { opacity: 0, y: 40, scale: 0.94 },
+        { opacity: 0, y: 50 },
         {
           opacity: 1,
           y: 0,
-          scale: 1,
-          stagger: 0.12,
-          ease: "back.out(1.4)",
-          duration: 0.7,
+          stagger: 0.2,
+          ease: "power3.out",
+          duration: 0.8,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 80%",
+            start: "top 75%",
             once: true,
           },
         }
@@ -75,7 +74,7 @@ export default function Skills() {
     <section id="skills" ref={containerRef} className="py-48 w-full bg-[#0C0D12] border-t border-white/5 relative">
       <div className="max-w-6xl mx-auto px-6">
         <h2 
-          className="skills-heading spider-glitch text-[clamp(3.2rem,8.5vw,7.5rem)] md:text-[8.5rem] lg:text-[10.5rem] xl:text-[12rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9]"
+          className="skills-heading spider-glitch text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9]"
           data-text="Skills."
         >
           Skills<span className="text-[#D9A15C]">.</span>
@@ -88,18 +87,18 @@ export default function Skills() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="gpu-accel will-change-transform group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
+              className="group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
             >
-              <h3 className="text-xl md:text-2xl font-semibold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.05em] uppercase transition-transform duration-500 group-hover:translate-x-1">
+              <h3 className="text-base font-semibold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.05em] uppercase transition-transform duration-500 group-hover:translate-x-1">
                 <span className="w-5 h-5 rounded-full border border-[#D9A15C]/40 flex items-center justify-center group-hover:border-[#D9A15C]/80 transition-colors">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C]/60 group-hover:bg-[#D9A15C] transition-colors" />
                 </span>
                 <span className="spider-glitch" data-text={category.title}>{category.title}</span>
               </h3>
-              <ul className="space-y-3.5">
+              <ul className="space-y-3">
                 {category.skills.map((skill, sIdx) => (
-                  <li key={sIdx} className="text-[#9A9AA5] font-light flex items-start gap-3 text-base md:text-lg lg:text-xl leading-[1.8] transition-colors duration-300 group-hover:text-[#EDEDF2]/80">
-                    <span className="text-[#D9A15C] mt-1 opacity-80 group-hover:opacity-100 transition-opacity text-sm">▹</span>
+                  <li key={sIdx} className="text-[#9A9AA5] font-light flex items-start gap-3 text-sm leading-[1.7] transition-colors duration-300 group-hover:text-[#EDEDF2]/70">
+                    <span className="text-[#D9A15C]/60 mt-1 opacity-80 group-hover:opacity-100 transition-opacity text-xs">▹</span>
                     {skill}
                   </li>
                 ))}
