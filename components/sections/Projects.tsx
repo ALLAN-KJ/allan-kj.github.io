@@ -180,8 +180,7 @@ export default function Projects() {
       >
         {/* Top Status & Progress Bar (Visible on mobile & desktop) */}
         <div className="flex absolute top-14 md:top-20 lg:top-24 left-6 md:left-12 right-6 md:right-12 lg:left-24 lg:right-24 z-40 items-center justify-between text-[0.65rem] md:text-xs font-mono tracking-widest text-[#9A9AA5]/70 uppercase select-none pointer-events-none">
-          <span className="flex items-center gap-2">
-            <span className="w-1.5 h-1.5 rounded-full bg-[#D9A15C] animate-pulse" />
+          <span>
             Projects Showcase
           </span>
           <div className="flex items-center gap-3 md:gap-4">
