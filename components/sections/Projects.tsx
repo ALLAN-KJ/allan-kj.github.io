@@ -53,16 +53,17 @@ export default function Projects() {
     const cards = track.querySelectorAll(".project-card");
     gsap.fromTo(
       cards,
-      { y: 50, opacity: 0 },
+      { y: 40, opacity: 0, scale: 0.95 },
       {
         y: 0,
         opacity: 1,
+        scale: 1,
         stagger: 0.08,
-        duration: 0.8,
-        ease: "power3.out",
+        duration: 0.75,
+        ease: "back.out(1.4)",
         scrollTrigger: {
           trigger: pinWrapper,
-          start: "top 80%",
+          start: "top 85%",
           once: true,
         },
       }

@@ -10,7 +10,7 @@ gsap.registerPlugin(ScrollTrigger);
 export default function SmoothScroll({ children }: { children: ReactNode }) {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 0.9,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
@@ -29,8 +29,8 @@ export default function SmoothScroll({ children }: { children: ReactNode }) {
     };
 
     gsap.ticker.add(rafHandler);
-    // Smooth frame-drop recovery without violent jumps or freezes
-    gsap.ticker.lagSmoothing(500, 33);
+    // lagSmoothing(0) ensures no artificial time dilation or sudden position jumps during Lenis RAF chaining
+    gsap.ticker.lagSmoothing(0);
 
     // Refresh ScrollTrigger once DOM layout stabilizes
     const refreshTimer = setTimeout(() => {

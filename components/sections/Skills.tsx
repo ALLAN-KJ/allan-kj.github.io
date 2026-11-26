@@ -19,16 +19,17 @@ export default function Skills() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         itemsRef.current,
-        { opacity: 0, y: 50 },
+        { opacity: 0, y: 40, scale: 0.95 },
         {
           opacity: 1,
           y: 0,
-          stagger: 0.2,
-          ease: "power3.out",
-          duration: 0.8,
+          scale: 1,
+          stagger: 0.1,
+          ease: "back.out(1.4)",
+          duration: 0.75,
           scrollTrigger: {
             trigger: containerRef.current,
-            start: "top 75%",
+            start: "top 82%",
             once: true,
           },
         }
@@ -87,7 +88,7 @@ export default function Skills() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
+              className="gpu-accel group bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:-translate-y-1 hover:scale-[1.02] hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] shadow-md cursor-default"
             >
               <h3 className="text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-6 flex items-center gap-3 tracking-[0.03em] uppercase transition-transform duration-500 group-hover:translate-x-1">
                 <span className="w-5 h-5 rounded-full border border-[#D9A15C]/40 flex items-center justify-center group-hover:border-[#D9A15C]/80 transition-colors">

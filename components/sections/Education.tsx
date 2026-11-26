@@ -24,15 +24,16 @@ export default function Education() {
         if (textElement && dotElement) {
           gsap.fromTo(
             textElement,
-            { opacity: 0, x: -20 },
+            { opacity: 0, y: 30, scale: 0.98 },
             {
               opacity: 1,
-              x: 0,
-              ease: "power3.out",
-              duration: 0.8,
+              y: 0,
+              scale: 1,
+              ease: "back.out(1.3)",
+              duration: 0.75,
               scrollTrigger: {
                 trigger: item,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
               },
             }
@@ -40,15 +41,16 @@ export default function Education() {
 
           gsap.fromTo(
             dotElement,
-            { scale: 0, backgroundColor: "#3f3f46" },
+            { scale: 0, opacity: 0 },
             {
               scale: 1,
+              opacity: 1,
               backgroundColor: "#D9A15C",
-              ease: "back.out(1.7)",
+              ease: "back.out(2.2)",
               duration: 0.6,
               scrollTrigger: {
                 trigger: item,
-                start: "top 85%",
+                start: "top 88%",
                 once: true,
               },
             }
@@ -104,7 +106,7 @@ export default function Education() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="mb-24 relative pl-10 md:pl-16 group"
+              className="gpu-accel mb-24 relative pl-10 md:pl-16 group"
             >
               <div className="timeline-dot absolute -left-[11px] top-2 w-4 h-4 rounded-full border-2 border-[#D9A15C]/60 bg-[#0A0B0F] z-10 transition-all duration-500 group-hover:border-[#D9A15C] group-hover:bg-[#D9A15C]/20" />
 

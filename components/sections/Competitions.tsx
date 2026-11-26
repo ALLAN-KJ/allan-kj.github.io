@@ -20,15 +20,16 @@ export default function Competitions() {
         
         gsap.fromTo(
           item,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 40, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
-            ease: "power3.out",
-            duration: 0.8,
+            scale: 1,
+            ease: "back.out(1.4)",
+            duration: 0.75,
             scrollTrigger: {
               trigger: item,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
             },
           }
@@ -106,7 +107,7 @@ export default function Competitions() {
               ref={(el) => {
                 itemsRef.current[idx] = el;
               }}
-              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 md:p-12 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
+              className="gpu-accel w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 md:p-12 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.1)] cursor-default"
             >
               <div className="absolute top-0 right-0 p-8 opacity-[0.04] group-hover:opacity-[0.08] transition-opacity duration-500">
                 <span className="text-[10rem] text-[#D9A15C] font-black leading-none">

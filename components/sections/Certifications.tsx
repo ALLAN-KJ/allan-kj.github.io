@@ -22,15 +22,16 @@ export default function Certifications() {
         
         gsap.fromTo(
           item,
-          { opacity: 0, y: 50 },
+          { opacity: 0, y: 40, scale: 0.95 },
           {
             opacity: 1,
             y: 0,
-            ease: "power3.out",
-            duration: 0.8,
+            scale: 1,
+            ease: "back.out(1.4)",
+            duration: 0.75,
             scrollTrigger: {
               trigger: item,
-              start: "top 85%",
+              start: "top 88%",
               once: true,
             },
           }
@@ -141,7 +142,7 @@ export default function Certifications() {
               role="button"
               tabIndex={0}
               aria-label={`View ${cert.title} certificate`}
-              className="w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
+              className="gpu-accel w-full md:w-[85%] bg-[#0F111A] border border-white/5 rounded-[1.5rem] p-8 shadow-lg relative overflow-hidden group hover:-translate-y-1 hover:scale-[1.02] hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_35px_rgba(217,161,92,0.15)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50"
             >
               {/* Desktop Hover Pill */}
               <div className="absolute top-8 right-8 hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[0.7rem] text-[#D9A15C] font-mono tracking-wider opacity-80 group-hover:opacity-100 group-hover:bg-[#D9A15C]/15 group-hover:border-[#D9A15C]/40 transition-all duration-300">
