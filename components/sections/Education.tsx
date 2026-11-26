@@ -59,18 +59,25 @@ export default function Education() {
       });
 
       headingSplit = new SplitType(".education-heading", { types: "chars" });
-      gsap.from(headingSplit.chars, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        y: 50,
-        opacity: 0,
-        stagger: 0.05,
-        ease: "power4.out",
-        duration: 0.8,
-      });
+      if (headingSplit.chars) {
+        gsap.fromTo(
+          headingSplit.chars,
+          { y: 60, opacity: 0, scale: 0.75 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.04,
+            ease: "back.out(1.8)",
+            duration: 0.75,
+            scrollTrigger: {
+              trigger: ".education-heading",
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
     }, containerRef);
 
     return () => {

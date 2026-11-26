@@ -22,13 +22,13 @@ export default function Certifications() {
         
         gsap.fromTo(
           item,
-          { opacity: 0, y: 40, scale: 0.95 },
+          { opacity: 0, y: 60, scale: 0.9 },
           {
             opacity: 1,
             y: 0,
             scale: 1,
-            ease: "back.out(1.4)",
-            duration: 0.75,
+            ease: "back.out(1.6)",
+            duration: 0.8,
             scrollTrigger: {
               trigger: item,
               start: "top 88%",
@@ -39,18 +39,25 @@ export default function Certifications() {
       });
 
       headingSplit = new SplitType(".certifications-heading", { types: "chars" });
-      gsap.from(headingSplit.chars, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        y: 50,
-        opacity: 0,
-        stagger: 0.05,
-        ease: "power4.out",
-        duration: 0.8,
-      });
+      if (headingSplit.chars) {
+        gsap.fromTo(
+          headingSplit.chars,
+          { y: 60, opacity: 0, scale: 0.75 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.04,
+            ease: "back.out(1.8)",
+            duration: 0.75,
+            scrollTrigger: {
+              trigger: ".certifications-heading",
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
     }, containerRef);
 
     return () => {
@@ -127,7 +134,7 @@ export default function Certifications() {
     <section id="certifications" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative border-t border-white/5">
       <div className="max-w-6xl mx-auto px-6">
         <h2 
-          className="certifications-heading spider-glitch text-[clamp(2.5rem,8vw,5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.03em] leading-[0.92]"
+          className="certifications-heading spider-glitch text-[clamp(2rem,6.2vw,6.5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9] whitespace-nowrap"
           data-text="Certifications."
         >
           Certifications<span className="text-[#D9A15C]">.</span>

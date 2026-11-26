@@ -19,14 +19,14 @@ export default function Skills() {
     const ctx = gsap.context(() => {
       gsap.fromTo(
         itemsRef.current,
-        { opacity: 0, y: 40, scale: 0.95 },
+        { opacity: 0, y: 60, scale: 0.9 },
         {
           opacity: 1,
           y: 0,
           scale: 1,
-          stagger: 0.1,
-          ease: "back.out(1.4)",
-          duration: 0.75,
+          stagger: 0.12,
+          ease: "back.out(1.6)",
+          duration: 0.8,
           scrollTrigger: {
             trigger: containerRef.current,
             start: "top 82%",
@@ -36,18 +36,25 @@ export default function Skills() {
       );
 
       headingSplit = new SplitType(".skills-heading", { types: "chars" });
-      gsap.from(headingSplit.chars, {
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top 80%",
-          once: true,
-        },
-        y: 50,
-        opacity: 0,
-        stagger: 0.05,
-        ease: "power4.out",
-        duration: 0.8,
-      });
+      if (headingSplit.chars) {
+        gsap.fromTo(
+          headingSplit.chars,
+          { y: 60, opacity: 0, scale: 0.75 },
+          {
+            y: 0,
+            opacity: 1,
+            scale: 1,
+            stagger: 0.04,
+            ease: "back.out(1.8)",
+            duration: 0.75,
+            scrollTrigger: {
+              trigger: ".skills-heading",
+              start: "top 85%",
+              once: true,
+            },
+          }
+        );
+      }
     }, containerRef);
 
     return () => {

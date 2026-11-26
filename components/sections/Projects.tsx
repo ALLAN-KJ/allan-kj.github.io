@@ -32,13 +32,14 @@ export default function Projects() {
       if (headingSplit.chars) {
         gsap.fromTo(
           headingSplit.chars,
-          { y: 50, opacity: 0 },
+          { y: 60, opacity: 0, scale: 0.75 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.05,
-            duration: 0.8,
-            ease: "power4.out",
+            scale: 1,
+            stagger: 0.04,
+            duration: 0.75,
+            ease: "back.out(1.8)",
             scrollTrigger: {
               trigger: heading,
               start: "top 85%",
