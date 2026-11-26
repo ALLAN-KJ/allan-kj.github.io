@@ -237,8 +237,7 @@ export default function Projects() {
               {/* Action Button */}
               <div className="mt-6 md:mt-8 transition-transform duration-300 group-hover:translate-y-[-2px]">
                 {project.isCurrent ? (
-                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center gap-2 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
-                    <span className="w-2 h-2 rounded-full bg-[#D9A15C] animate-pulse" />
+                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center justify-center text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
                     Currently Viewing
                   </div>
                 ) : project.link ? (
