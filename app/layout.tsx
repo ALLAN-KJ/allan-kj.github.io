@@ -108,7 +108,7 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": "https://allan-kj.github.io/#profilepage",
   dateCreated: "2026-08-19",
-  dateModified: "2026-11-25",
+  dateModified: "2026-11-26",
   mainEntity: {
     "@id": "https://allan-kj.github.io/#person",
   },
@@ -151,6 +151,15 @@ const personJsonLd = {
     sameAs: "https://www.zf.com/",
   },
   hasCredential: [
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Google Cloud Certified — Generative AI Leader",
+      credentialCategory: "Professional Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Google Cloud",
+      },
+    },
     {
       "@type": "EducationalOccupationalCredential",
       name: "Privacy and Security in Online Social Media",

@@ -39,7 +39,8 @@ Domains   : Cybersecurity, System Design, IoT, Linux System Administration`,
 4. GHOST Voice Assistant -> Desktop AI assistant for WhatsApp & browser automation
 5. 3D Education Website  -> Interactive book-geometry learning platform`,
 
-  certifications: `- Red Hat System Administration I (RH124 v10)
+  certifications: `- Google Cloud Certified — Generative AI Leader
+- Red Hat System Administration I (RH124 v10)
 - Oracle Java Foundations (1Z0-811)
 - Cisco Intro to IoT & Digital Transformation
 - EC-Council Cybersecurity Workshop (1 CPE)

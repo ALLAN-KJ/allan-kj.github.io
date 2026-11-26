@@ -61,6 +61,14 @@ export default function Certifications() {
 
   const certifications: CertificateData[] = [
     {
+      title: "Google Cloud Certified — Generative AI Leader",
+      issuer: "Google Cloud",
+      description: "Professional credential certifying strategic competencies in generative AI architectures, Google Cloud AI infrastructure, enterprise model deployment, and AI solutions.",
+      image: "/certificates/google-cloud-genai-leader.png",
+      date: "Nov 26, 2026",
+      credentialId: "8ce04321d17845e18f3ba98e778c6dac",
+    },
+    {
       title: "Introduction to IoT",
       issuer: "Cisco Networking Academy",
       description: "Student-level credential verifying course completion for Introduction to Internet of Things, covering IoT architecture, digital transformation, automation, and cybersecurity.",
