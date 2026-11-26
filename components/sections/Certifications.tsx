@@ -63,7 +63,7 @@ export default function Certifications() {
     {
       title: "Google Cloud Certified — Generative AI Leader",
       issuer: "Google Cloud",
-      description: "Professional credential certifying strategic competencies in generative AI architectures, Google Cloud AI infrastructure, enterprise model deployment, and AI solutions.",
+      description: "Official credential recognizing professional competency as a Google Cloud Certified Generative AI Leader, covering generative AI architectures, Google Cloud AI infrastructure, and enterprise AI leadership (Series ID: 87316).",
       image: "/certificates/google-cloud-genai-leader.png",
       date: "Nov 26, 2026",
       credentialId: "8ce04321d17845e18f3ba98e778c6dac",
