@@ -78,12 +78,6 @@ export default function Competitions() {
       description: "International Level Techno-Management Fest, Karunya Institute of Technology and Sciences. Took part in three cybersecurity- and IoT-focused events."
     },
     {
-      title: "Conesta Forge",
-      date: "June 2026",
-      events: ["5-Day AI Build Sprint"],
-      description: "Shipped a working web application solo under a 5-day deadline, finishing #33 on the leaderboard."
-    },
-    {
       title: "Hacknex Hackathon",
       date: "2026",
       events: ["Hackathon Challenge"],

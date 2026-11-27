@@ -122,7 +122,7 @@ export default function Certifications() {
     {
       title: "Privacy and Security in Online Social Media",
       issuer: "NPTEL (IIIT Hyderabad / IIT Madras)",
-      description: "12-week NPTEL online certification (Jul–Oct 2026); scored 67% (Elite badge). Roll No: NPTEL26CS141S1084806030.",
+      description: "12-week NPTEL online certification (Jul–Oct 2026); scored 67% (Elite badge).",
       image: "/certificates/nptel-social-media.png",
       date: "Jul–Oct 2026",
       credentialId: "NPTEL26CS141S1084806030",
