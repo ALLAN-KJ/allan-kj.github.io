@@ -103,7 +103,7 @@ const profilePageJsonLd = {
   "@type": "ProfilePage",
   "@id": "https://allan-kj.github.io/#profilepage",
   dateCreated: "2026-08-19",
-  dateModified: "2026-11-26",
+  dateModified: "2026-11-28",
   mainEntity: {
     "@id": "https://allan-kj.github.io/#person",
   },
