@@ -108,9 +108,9 @@ export default function Home() {
             >
               <h1 
                 className="hero-title spider-glitch text-5xl font-black font-heading tracking-[-0.04em] text-[#EDEDF2] md:text-7xl xl:text-8xl 2xl:text-9xl drop-shadow-[0_0_20px_rgba(217,161,92,0.15)] pointer-events-auto leading-[0.95] whitespace-nowrap cursor-pointer"
-                data-text="Allan K J"
+                data-text="Allan K.J"
               >
-                Allan K J
+                Allan K.J
               </h1>
               <p className="mt-6 md:mt-8 max-w-xl text-base md:text-lg text-[#9A9AA5] leading-[1.7] font-light pointer-events-auto">
                 Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences. Builds full-stack web apps and interactive 3D websites, with hands-on exposure to enterprise IT security and networking.

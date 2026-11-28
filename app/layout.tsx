@@ -23,11 +23,11 @@ const clashDisplay = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allan-kj.github.io/"),
-  applicationName: "Allan K J",
-  title: "Allan K J — Cybersecurity Student & Developer",
+  applicationName: "Allan K.J",
+  title: "Allan K.J — Cybersecurity Student & Developer",
   description:
-    "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
-  authors: [{ name: "Allan K J", url: "https://allan-kj.github.io/" }],
+    "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+  authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/" }],
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -39,26 +39,26 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Allan K J — Cybersecurity Student & Developer",
+    title: "Allan K.J — Cybersecurity Student & Developer",
     description:
-      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+      "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
     url: "https://allan-kj.github.io/",
-    siteName: "Allan K J",
+    siteName: "Allan K.J",
     type: "website",
     images: [
       {
         url: "https://allan-kj.github.io/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Allan K J — Cybersecurity Student & Developer",
+        alt: "Allan K.J — Cybersecurity Student & Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allan K J — Cybersecurity Student & Developer",
+    title: "Allan K.J — Cybersecurity Student & Developer",
     description:
-      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+      "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
     images: ["https://allan-kj.github.io/og-image.png"],
   },
   robots: {
