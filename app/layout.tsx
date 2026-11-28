@@ -22,12 +22,12 @@ const clashDisplay = localFont({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://allan-kj.github.io/"),
-  applicationName: "Allan K.J",
-  title: "Allan K.J — Cybersecurity Student & Developer",
+  metadataBase: new URL("https://allan-kj.github.io"),
+  applicationName: "Allan K J",
+  title: "Allan K J — Cybersecurity Student & Developer",
   description:
-    "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
-  authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/" }],
+    "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+  authors: [{ name: "Allan K J", url: "https://allan-kj.github.io/" }],
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -39,26 +39,26 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Allan K.J — Cybersecurity Student & Developer",
+    title: "Allan K J — Cybersecurity Student & Developer",
     description:
-      "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
     url: "https://allan-kj.github.io/",
-    siteName: "Allan K.J",
+    siteName: "Allan K J",
     type: "website",
     images: [
       {
         url: "https://allan-kj.github.io/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Allan K.J — Cybersecurity Student & Developer",
+        alt: "Allan K J — Cybersecurity Student & Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allan K.J — Cybersecurity Student & Developer",
+    title: "Allan K J — Cybersecurity Student & Developer",
     description:
-      "Portfolio of Allan K.J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
     images: ["https://allan-kj.github.io/og-image.png"],
   },
   robots: {
@@ -87,8 +87,8 @@ const websiteJsonLd = {
   "@context": "https://schema.org",
   "@type": "WebSite",
   "@id": "https://allan-kj.github.io/#website",
-  name: "Allan K.J",
-  alternateName: ["Allan K.J Portfolio", "Allan Portfolio", "Allan KJ"],
+  name: "Allan K J",
+  alternateName: "Allan K.J",
   url: "https://allan-kj.github.io/",
   publisher: {
     "@id": "https://allan-kj.github.io/#person",
@@ -114,14 +114,14 @@ const personJsonLd = {
   "@type": "Person",
   "@id": "https://allan-kj.github.io/#person",
   name: "Allan K J",
-  alternateName: ["Allan K.J", "Allan K. J.", "Allan KJ"],
+  alternateName: "Allan K.J",
   url: "https://allan-kj.github.io/",
   image: "https://allan-kj.github.io/og-image.png",
   jobTitle: "Cybersecurity Student & Developer",
   description:
-    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences. Builds full-stack web apps and interactive 3D websites, with hands-on exposure to enterprise IT security and networking.",
+    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences. Builds full-stack web applications, with hands-on exposure to enterprise IT security and networking.",
   disambiguatingDescription:
-    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences, building full-stack web applications and interactive 3D websites.",
+    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences, building full-stack web applications.",
   knowsAbout: [
     "Cybersecurity",
     "Network Security",
@@ -129,7 +129,6 @@ const personJsonLd = {
     "Full-Stack Web Development",
     "Next.js",
     "TypeScript",
-    "Three.js",
     "GSAP Animation",
     "Tailwind CSS",
     "Linux System Administration",
