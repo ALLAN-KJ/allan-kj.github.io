@@ -155,9 +155,9 @@ export default function Certifications() {
 
   return (
     <section id="certifications" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative border-t border-white/5">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h2 
-          className="certifications-heading spider-glitch text-[clamp(2rem,6.2vw,6.5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9] whitespace-nowrap"
+          className="certifications-heading spider-glitch text-[clamp(3rem,7.5vw,6rem)] md:text-[6.75rem] lg:text-[9rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9] whitespace-nowrap"
           data-text="Certifications."
         >
           Certifications<span className="text-[#D9A15C]">.</span>

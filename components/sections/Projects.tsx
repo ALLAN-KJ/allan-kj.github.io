@@ -143,19 +143,17 @@ export default function Projects() {
       title: "Personal Portfolio Website",
       category: "Interactive Portfolio",
       description:
-        "Built with Next.js 15, TypeScript, GSAP, Tailwind CSS, and Lenis smooth scrolling. Features an interactive bash terminal emulator, Miles Morales-inspired kinetic glitch typography, and physics-based continuous momentum scrolling.",
-      tags: ["Next.js 15", "TypeScript", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS", "Lenis"],
+        "Personal portfolio with smooth momentum scrolling, dynamic typography, and an interactive command terminal emulator.",
       github: "https://github.com/ALLAN-KJ/allan-kj.github.io",
       link: null,
       isCurrent: true,
       buttonText: "Currently Viewing",
     },
     {
-      title: "Smart India Hackathon (SIH) 2026",
+      title: "Smart India Hackathon 2026",
       category: "IPsec Sentinel • PS 26160",
       description:
-        "Built and deployed IPsec Sentinel for Problem Statement 26160 — an AI-powered IPsec VPN analyzer with XGBoost risk classification, Post-Quantum Cryptography (PQC) readiness scoring, and cryptographic Merkle tree audit trails. Deployed full-stack with a responsive frontend on Vercel and API backend on Render.",
-      tags: ["Python", "FastAPI", "XGBoost", "IPsec/IKEv2", "PQC", "Vercel", "Render"],
+        "AI-powered IPsec VPN analyzer with XGBoost risk classification and Merkle tree audit trails.",
       github: "https://github.com/ALLAN-KJ/SIH-2026",
       link: "https://sih-2026-frontend-eight.vercel.app",
       buttonText: "View Live",
@@ -164,8 +162,7 @@ export default function Projects() {
       title: "Student LMS Platform",
       category: "Full-Stack Web App",
       description:
-        "Full-stack learning management system built during a Qaroo internship — features API integration and live student-facing functionality.",
-      tags: ["Full-Stack Web", "REST APIs", "Node.js"],
+        "Full-stack learning management platform with API integration, developed during a software engineering internship.",
       github: "https://github.com/ALLAN-KJ/Quaro-internship",
       link: "https://student-lms-vds8.onrender.com/",
       buttonText: "View Live",
@@ -174,8 +171,7 @@ export default function Projects() {
       title: "GHOST",
       category: "AI Voice Assistant",
       description:
-        "Building a voice-controlled AI assistant that sends WhatsApp messages and opens websites like Google and YouTube.",
-      tags: ["Python", "SpeechRecognition", "NLP", "Automation"],
+        "Desktop AI voice assistant capable of automated messaging and voice-driven web navigation.",
       github: "https://github.com/ALLAN-KJ/GHOST2",
       link: null,
       buttonText: "In Progress",
@@ -184,8 +180,7 @@ export default function Projects() {
       title: "Education-Themed 3D Website",
       category: "Interactive 3D Web (In Progress)",
       description:
-        "Designing a book-shaped, themed interactive 3D website for education.",
-      tags: ["Next.js", "Three.js", "Canvas", "GSAP"],
+        "Interactive 3D educational web project featuring custom book geometry and animated page flipping.",
       github: "https://github.com/ALLAN-KJ/BOOK",
       link: null,
       buttonText: "In Progress",
@@ -218,15 +213,14 @@ export default function Projects() {
       {/* 2. Pinned Horizontal Track: Viewport-height showcase on all devices */}
       <div
         ref={pinWrapperRef}
-        className="w-full h-screen min-h-screen flex flex-col justify-center relative overflow-hidden"
+        className="w-full h-screen min-h-screen flex flex-col justify-between relative overflow-hidden pt-24 md:pt-28 pb-6 md:pb-8"
       >
-        {/* Top Status & Progress Bar (Visible on mobile & desktop) */}
-        <div className="flex absolute top-14 md:top-20 lg:top-24 left-6 md:left-12 right-6 md:right-12 lg:left-24 lg:right-24 z-40 items-center justify-between text-[0.65rem] md:text-xs font-mono tracking-widest text-[#9A9AA5]/70 uppercase select-none pointer-events-none">
-          <span>
-            Projects Showcase
+        {/* Top Status & Progress Bar (In-flow flex row, never overlaps cards) */}
+        <div className="w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-24 z-40 flex items-center justify-between text-xs md:text-sm font-mono tracking-widest text-[#9A9AA5] uppercase select-none pointer-events-none mb-2 md:mb-4">
+          <span className="text-[#EDEDF2] font-semibold tracking-wider">
+            Selected work
           </span>
           <div className="flex items-center gap-3 md:gap-4">
-            <span className="text-[#D9A15C]/80">01 — 05 + More</span>
             <div className="w-24 md:w-36 h-[2px] bg-white/10 rounded-full overflow-hidden">
               <div
                 ref={progressBarRef}
@@ -243,28 +237,24 @@ export default function Projects() {
             paddingLeft: "max(1.5rem, calc((100vw - 80rem) / 2 + 2rem))",
             paddingRight: "max(1.5rem, calc((100vw - 80rem) / 2 + 2rem))",
           }}
-          className="gpu-accel flex items-center gap-5 md:gap-8 lg:gap-10 w-max overflow-visible select-none will-change-transform"
+          className="gpu-accel flex items-stretch gap-5 md:gap-8 lg:gap-10 w-max overflow-visible select-none will-change-transform my-auto"
         >
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none min-h-[440px] md:min-h-[500px] h-auto bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.12)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[450px] md:h-[480px] bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
             >
               <div>
-                {/* Card Header: Category Tag & Large Index Counter */}
+                {/* Card Header: Category Tag */}
                 <div className="flex items-start justify-between gap-3 mb-5 md:mb-6">
                   <span className="px-3 py-1 rounded-full bg-[#D9A15C]/10 border border-[#D9A15C]/20 text-[#D9A15C] font-medium tracking-[0.1em] uppercase text-[0.65rem] md:text-[0.7rem] transition-transform duration-300 group-hover:translate-x-1">
                     {project.category}
                   </span>
-                  <span className="text-xl md:text-2xl font-heading font-black text-white/20 group-hover:text-[#D9A15C]/70 transition-colors duration-300 flex-shrink-0">
-                    0{idx + 1}
-                  </span>
                 </div>
 
-                {/* Title */}
+                {/* Title with uniform min-height */}
                 <h3 
-                  className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
-                  data-text={project.title}
+                  className="text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-normal [word-spacing:0.25em] leading-tight transition-colors duration-300 group-hover:translate-x-1 group-hover:text-[#D9A15C] min-h-[3.8rem] md:min-h-[4.5rem] flex items-start"
                 >
                   {project.title}
                 </h3>
@@ -273,26 +263,12 @@ export default function Projects() {
                 <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-normal">
                   {project.description}
                 </p>
-
-                {/* Tech Tags */}
-                {project.tags && project.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-1.5 mt-4">
-                    {project.tags.map((tag, tIdx) => (
-                      <span
-                        key={tIdx}
-                        className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/8 text-[#EDEDF2] text-[0.65rem] md:text-xs font-mono font-normal tracking-wide"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </div>
 
               {/* Action Buttons */}
               <div className="mt-6 md:mt-8 flex items-center gap-3 flex-wrap transition-transform duration-300 group-hover:translate-y-[-2px]">
                 {project.isCurrent ? (
-                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center justify-center text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
+                  <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center justify-center text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] cursor-default">
                     Currently Viewing
                   </div>
                 ) : project.link ? (
@@ -330,13 +306,13 @@ export default function Projects() {
 
           {/* Concluding Card: Explore More on GitHub & Contact */}
           <div
-            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none min-h-[440px] md:min-h-[500px] h-auto bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.18)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[450px] md:h-[480px] bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
           >
             <div>
               {/* Card Header: Category Tag & GitHub SVG Link */}
               <div className="flex items-start justify-between gap-3 mb-5 md:mb-6">
                 <span className="px-3 py-1 rounded-full bg-[#D9A15C]/15 border border-[#D9A15C]/30 text-[#D9A15C] font-medium tracking-[0.1em] uppercase text-[0.65rem] md:text-[0.7rem] transition-transform duration-300 group-hover:translate-x-1">
-                  Open Source & More
+                  Open Source &amp; More
                 </span>
                 <a
                   href="https://github.com/ALLAN-KJ"
@@ -351,17 +327,16 @@ export default function Projects() {
                 </a>
               </div>
 
-              {/* Title */}
+              {/* Title with uniform min-height */}
               <h3 
-                className="spider-glitch text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-[-0.02em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white"
-                data-text="More on GitHub"
+                className="text-2xl md:text-3xl font-bold font-heading text-[#EDEDF2] mb-3 md:mb-4 tracking-normal [word-spacing:0.25em] leading-tight transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white min-h-[3.8rem] md:min-h-[4.5rem] flex items-start"
               >
                 More on GitHub
               </h3>
 
               {/* Description */}
               <p className="text-[#9A9AA5] text-sm leading-[1.7] font-light">
-                Want to explore more source code, experiments, and ongoing builds? Check out all public repositories on GitHub or reach out to collaborate.
+                Explore open-source repositories, ongoing builds, and technical experiments on GitHub.
               </p>
             </div>
 
@@ -376,9 +351,9 @@ export default function Projects() {
               </AnimatedButton>
               <a
                 href="#contact"
-                className="text-xs md:text-sm text-[#9A9AA5] hover:text-[#D9A15C] font-mono tracking-wider uppercase transition-colors inline-flex items-center gap-1.5"
+                className="text-xs md:text-sm text-[#9A9AA5] hover:text-[#D9A15C] font-mono tracking-wider uppercase transition-colors inline-flex items-center gap-1.5 min-h-[44px]"
               >
-                <span>Let&apos;s Talk</span>
+                <span>Contact</span>
                 <span>→</span>
               </a>
             </div>

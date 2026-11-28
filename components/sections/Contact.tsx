@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import SplitType from "split-type";
@@ -9,19 +9,6 @@ import AnimatedButton from "../AnimatedButton";
 export default function Contact() {
   const containerRef = useRef<HTMLDivElement>(null);
   const bgRef = useRef<HTMLDivElement>(null);
-  const [copied, setCopied] = useState(false);
-
-  const handleSayHello = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    // Copy email to clipboard with error handling
-    if (typeof navigator !== "undefined" && navigator.clipboard) {
-      navigator.clipboard.writeText("allan22kj@gmail.com").catch(() => {});
-    }
-    setCopied(true);
-    setTimeout(() => setCopied(false), 3500);
-
-    // Also invoke mailto in case system mail client is configured
-    window.location.href = "mailto:allan22kj@gmail.com";
-  };
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
@@ -93,50 +80,25 @@ export default function Contact() {
           Always open for a chat about cybersecurity, development, or new opportunities.
         </p>
 
-        <div className="flex flex-col items-center gap-4 mb-24">
-          <div className="flex flex-wrap justify-center items-center gap-6">
-            <AnimatedButton
-              href="mailto:allan22kj@gmail.com"
-              onClick={handleSayHello}
-              className={copied ? "!bg-[#22c55e] hover:!bg-[#16a34a] !text-white !shadow-[0_0_25px_rgba(34,197,94,0.35)]" : ""}
-            >
-              {copied ? (
-                <span className="inline-flex items-center gap-2 normal-case font-bold">
-                  <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M5 13l4 4L19 7" />
-                  </svg>
-                  allan22kj@gmail.com copied!
-                </span>
-              ) : (
-                "Say hello"
-              )}
-            </AnimatedButton>
-            <a
-              href="/resume.pdf"
-              download="Allan_KJ_Resume.pdf"
-              className="px-6 py-3.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 hover:border-[#D9A15C] transition-all duration-300 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] inline-flex items-center gap-2 min-h-[48px] shadow-[0_0_20px_rgba(217,161,92,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D9A15C]"
-              aria-label="Download Resume"
-            >
-              <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" aria-hidden="true">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
-              </svg>
-              <span>Resume</span>
-            </a>
-          </div>
-
-          {/* Direct email shortcuts for users without mail client */}
-          <div className="flex items-center gap-3 text-xs font-mono text-[#9A9AA5] mt-1">
-            <span>allan22kj@gmail.com</span>
-            <span className="text-white/20">•</span>
-            <a
-              href="https://mail.google.com/mail/?view=cm&fs=1&to=allan22kj@gmail.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[#D9A15C] hover:text-[#EDEDF2] transition-colors inline-flex items-center gap-1 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]"
-            >
-              Open in Gmail ↗
-            </a>
-          </div>
+        <div className="flex flex-wrap justify-center items-center gap-6 mb-24">
+          <AnimatedButton
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=allan22kj@gmail.com"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Say hello
+          </AnimatedButton>
+          <a
+            href="/resume.pdf"
+            download="Allan_KJ_Resume.pdf"
+            className="px-6 py-3.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 hover:border-[#D9A15C] transition-all duration-300 text-xs md:text-sm font-semibold uppercase tracking-[0.12em] inline-flex items-center gap-2 min-h-[48px] shadow-[0_0_20px_rgba(217,161,92,0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D9A15C]"
+            aria-label="Download Resume"
+          >
+            <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24" aria-hidden="true">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
+            </svg>
+            <span>Resume</span>
+          </a>
         </div>
 
         <div className="flex justify-center items-center gap-8 border-t border-white/8 pt-12 w-full max-w-md mx-auto">

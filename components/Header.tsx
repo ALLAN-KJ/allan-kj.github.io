@@ -20,11 +20,11 @@ export default function Header() {
   const { scrollY, scrollYProgress } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
   const [activeId, setActiveId] = useState("hero");
-  
+
   // Nav background & backdrop blur smoothly adjust as you scroll (compositor-only, zero-reflow)
   const navBackground = useTransform(scrollY, [0, 100], ["rgba(10, 10, 10, 0)", "rgba(10, 10, 11, 0.9)"]);
   const navBackdropFilter = useTransform(scrollY, [0, 100], ["blur(0px)", "blur(24px)"]);
-  
+
   // Progress bar smoothing
   const scaleX = useSpring(scrollYProgress, {
     stiffness: 100,
@@ -34,7 +34,7 @@ export default function Header() {
 
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
-    
+
     const triggers: ScrollTrigger[] = [];
     const sectionTargets = [
       { id: "hero", targetId: "hero" },
@@ -54,13 +54,22 @@ export default function Header() {
         trigger: section,
         start: "top center",
         end: "bottom center",
-        onEnter: () => setActiveId(id),
-        onEnterBack: () => setActiveId(id),
+        onToggle: (self) => {
+          if (self.isActive) setActiveId(id);
+        },
       });
       triggers.push(trigger);
     });
-    
+
+    const handleScroll = () => {
+      if (window.scrollY < 120) {
+        setActiveId("hero");
+      }
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
     return () => {
+      window.removeEventListener("scroll", handleScroll);
       triggers.forEach(t => t.kill());
     };
   }, []);
@@ -76,22 +85,21 @@ export default function Header() {
         className="fixed top-0 left-0 right-0 z-50 h-20 flex items-center justify-between px-6 border-b border-primary/20 shadow-lg shadow-black/20 transition-colors"
       >
         <div className="text-sm font-semibold font-heading text-[#EDEDF2] tracking-[0.06em] uppercase hover:text-[#D9A15C] transition-colors">
-          Allan K J
+          Allan K.J
         </div>
-        
+
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-2 lg:gap-6 xl:gap-8">
           <nav className="flex gap-1.5 lg:gap-4 xl:gap-6">
             {links.map((link) => {
               const isActive = activeId === link.id;
               return (
-                <Link 
-                  key={link.name} 
-                  href={link.href} 
+                <Link
+                  key={link.name}
+                  href={link.href}
                   id={`nav-${link.id}`}
-                  className={`nav-link glitch-hover text-[0.65rem] lg:text-[0.7rem] font-medium tracking-[0.08em] lg:tracking-[0.12em] uppercase transition-colors duration-200 p-1.5 lg:p-2 min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm whitespace-nowrap ${
-                    isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#EDEDF2]"
-                  }`}
+                  className={`nav-link text-[0.65rem] lg:text-[0.7rem] font-medium tracking-[0.08em] lg:tracking-[0.12em] uppercase transition-colors duration-200 p-1.5 lg:p-2 min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm whitespace-nowrap ${isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#EDEDF2]"
+                    }`}
                 >
                   {link.name}
                 </Link>
@@ -123,22 +131,11 @@ export default function Header() {
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
             </a>
-            <a
-              href="/resume.pdf"
-              download="Allan_KJ_Resume.pdf"
-              className="ml-1 px-3 py-1 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 hover:border-[#D9A15C] transition-all duration-300 text-[0.65rem] lg:text-[0.7rem] font-medium tracking-[0.1em] uppercase inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]"
-              aria-label="Download Resume"
-            >
-              <svg className="w-3 h-3 fill-none stroke-current" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
-              </svg>
-              <span>Resume</span>
-            </a>
           </div>
         </div>
 
         {/* Mobile Hamburger */}
-        <button 
+        <button
           className="md:hidden p-2 text-white hover:text-primary transition-colors flex flex-col justify-center items-center gap-1.5 w-12 h-12 z-[60]"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
@@ -149,7 +146,7 @@ export default function Header() {
         </button>
 
         {/* Progress Bar */}
-        <motion.div 
+        <motion.div
           className="absolute bottom-0 left-0 right-0 h-[1px] bg-[#D9A15C]/70 origin-left"
           style={{ scaleX }}
         />
@@ -158,7 +155,7 @@ export default function Header() {
       {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
@@ -167,35 +164,22 @@ export default function Header() {
             {links.map((link) => {
               const isActive = activeId === link.id;
               return (
-                <Link 
-                  key={link.name} 
-                  href={link.href} 
+                <Link
+                  key={link.name}
+                  href={link.href}
                   id={`mobile-nav-${link.id}`}
                   onClick={() => setIsOpen(false)}
-                  className={`glitch-hover text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 min-h-[44px] flex items-center justify-center p-4 w-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm ${
-                    isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#D9A15C]"
-                  }`}
+                  className={`text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 min-h-[44px] flex items-center justify-center p-4 w-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm ${isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#D9A15C]"
+                    }`}
                 >
                   {link.name}
                 </Link>
               );
             })}
 
-            <div className="flex flex-col items-center gap-4 mt-4 pt-6 border-t border-white/10">
+            <div className="flex items-center gap-6 mt-4 pt-6 border-t border-white/10">
               <a
-                href="/resume.pdf"
-                download="Allan_KJ_Resume.pdf"
-                className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 transition-all duration-300 text-sm font-medium tracking-[0.12em] uppercase inline-flex items-center gap-2 min-h-[44px]"
-                aria-label="Download Resume"
-              >
-                <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
-                </svg>
-                <span>Download Resume</span>
-              </a>
-              <div className="flex items-center gap-6">
-                <a
-                  href="https://github.com/ALLAN-KJ"
+                href="https://github.com/ALLAN-KJ"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-[#9A9AA5] hover:text-[#EDEDF2] transition-colors p-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em]"
@@ -219,7 +203,6 @@ export default function Header() {
                   LinkedIn
                 </a>
               </div>
-            </div>
           </motion.div>
         )}
       </AnimatePresence>

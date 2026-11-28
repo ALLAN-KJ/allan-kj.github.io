@@ -113,9 +113,9 @@ export default function Competitions() {
 
   return (
     <section id="competitions" ref={containerRef} className="py-32 w-full bg-[#0A0B0F] overflow-hidden relative">
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h2 
-          className="competitions-heading spider-glitch text-[clamp(2rem,6.2vw,6.5rem)] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9] whitespace-nowrap"
+          className="competitions-heading spider-glitch text-[clamp(3rem,7.5vw,6rem)] md:text-[6.75rem] lg:text-[9rem] font-black font-heading text-[#EDEDF2] mb-20 text-center tracking-[-0.05em] leading-[0.9] whitespace-nowrap"
           data-text="Competitions."
         >
           Competitions<span className="text-[#D9A15C]">.</span>
