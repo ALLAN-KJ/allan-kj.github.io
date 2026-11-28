@@ -14,59 +14,79 @@ export default function Certifications() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let headingSplit: SplitType | null = null;
+    const mm = gsap.matchMedia(containerRef);
 
-    const ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
-        if (!item) return;
-        
-        gsap.fromTo(
-          item,
-          { opacity: 0, y: 60, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            ease: "back.out(1.6)",
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 88%",
-              once: true,
-            },
-          }
-        );
-      });
+    mm.add(
+      {
+        isReduced: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const { isReduced } = context.conditions as { isReduced: boolean; isNormal: boolean };
+        let headingSplit: SplitType | null = null;
 
-      headingSplit = new SplitType(".certifications-heading", { types: "chars" });
-      if (headingSplit.chars) {
-        gsap.fromTo(
-          headingSplit.chars,
-          { y: 60, opacity: 0, scale: 0.75 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.04,
-            ease: "back.out(1.8)",
-            duration: 0.75,
-            scrollTrigger: {
-              trigger: ".certifications-heading",
-              start: "top 85%",
-              once: true,
-            },
+        if (isReduced) {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
+            gsap.set(item, { opacity: 1, y: 0, scale: 1 });
+          });
+          gsap.set(".certifications-heading", { opacity: 1, y: 0, scale: 1 });
+        } else {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
+            
+            gsap.fromTo(
+              item,
+              { opacity: 0, y: 60, scale: 0.9 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: "back.out(1.6)",
+                duration: 0.8,
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 88%",
+                  once: true,
+                },
+              }
+            );
+          });
+
+          headingSplit = new SplitType(".certifications-heading", { types: "chars" });
+          if (headingSplit.chars) {
+            gsap.fromTo(
+              headingSplit.chars,
+              { y: 60, opacity: 0, scale: 0.75 },
+              {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.04,
+                ease: "back.out(1.8)",
+                duration: 0.75,
+                scrollTrigger: {
+                  trigger: ".certifications-heading",
+                  start: "top 85%",
+                  once: true,
+                },
+              }
+            );
           }
-        );
+        }
+
+        return () => {
+          headingSplit?.revert();
+        };
       }
-    }, containerRef);
+    );
 
     return () => {
-      ctx.revert();
-      headingSplit?.revert();
+      mm.revert();
     };
   }, []);
 
-  const certifications: CertificateData[] = [
+  const accreditedCerts: CertificateData[] = [
     {
       title: "Google Cloud Certified — Generative AI Leader",
       issuer: "Google Cloud",
@@ -74,13 +94,6 @@ export default function Certifications() {
       image: "/certificates/google-cloud-genai-leader.png",
       date: "Nov 26, 2026",
       credentialId: "8ce04321d17845e18f3ba98e778c6dac",
-    },
-    {
-      title: "Introduction to IoT",
-      issuer: "Cisco Networking Academy",
-      description: "Student-level credential verifying course completion for Introduction to Internet of Things, covering IoT architecture, digital transformation, automation, and cybersecurity.",
-      image: "/certificates/cisco-iot.png",
-      date: "Mar 22, 2026",
     },
     {
       title: "Red Hat System Administration I (RH124 - RHA) - Ver. 10",
@@ -91,6 +104,14 @@ export default function Certifications() {
       verifyUrl: "https://www.credly.com/badges/d96a0650-ceea-430e-85cd-f56ea4f194a0",
     },
     {
+      title: "Oracle Java Foundations (1Z0-811)",
+      issuer: "Oracle",
+      description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
+      image: "/certificates/oracle-java.png",
+      credentialId: "ORACLE-1Z0-811",
+      date: "Sept 24, 2026",
+    },
+    {
       title: "Artificial Intelligence Fundamentals",
       issuer: "IBM SkillsBuild",
       description: "Professional credential satisfying the requirements for Artificial Intelligence Fundamentals, machine learning methodologies, and ethical AI architectures.",
@@ -99,13 +120,24 @@ export default function Certifications() {
       verifyUrl: "https://www.credly.com/badges/49bc6703-d622-46a9-a8c5-1a1a95fdd993",
     },
     {
-      title: "Oracle Java Foundations (1Z0-811)",
-      issuer: "Oracle",
-      description: "Covers core Java fundamentals — data types, operators, control structures, arrays, methods, and object-oriented programming (OOP).",
-      image: "/certificates/oracle-java.png",
-      credentialId: "ORACLE-1Z0-811",
-      date: "Sept 24, 2026",
+      title: "Introduction to IoT",
+      issuer: "Cisco Networking Academy",
+      description: "Student-level credential verifying course completion for Introduction to Internet of Things, covering IoT architecture, digital transformation, automation, and cybersecurity.",
+      image: "/certificates/cisco-iot.png",
+      date: "Mar 22, 2026",
     },
+    {
+      title: "Privacy and Security in Online Social Media",
+      issuer: "NPTEL (IIIT Hyderabad / IIT Madras)",
+      description: "12-week NPTEL online certification (Jul–Oct 2026); scored 67% (Elite badge).",
+      image: "/certificates/nptel-social-media.png",
+      date: "Jul–Oct 2026",
+      credentialId: "NPTEL26CS141S1084806030",
+      verifyUrl: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
+    },
+  ];
+
+  const workshops: CertificateData[] = [
     {
       title: "EC-Council Cybersecurity Workshop",
       issuer: "EC-Council",
@@ -119,15 +151,6 @@ export default function Certifications() {
       image: "/certificates/aiori3-apnic.png",
       date: "Sept 8, 2026",
     },
-    {
-      title: "Privacy and Security in Online Social Media",
-      issuer: "NPTEL (IIIT Hyderabad / IIT Madras)",
-      description: "12-week NPTEL online certification (Jul–Oct 2026); scored 67% (Elite badge).",
-      image: "/certificates/nptel-social-media.png",
-      date: "Jul–Oct 2026",
-      credentialId: "NPTEL26CS141S1084806030",
-      verifyUrl: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
-    },
   ];
 
   return (
@@ -140,8 +163,9 @@ export default function Certifications() {
           Certifications<span className="text-[#D9A15C]">.</span>
         </h2>
 
+        {/* Accredited Certifications */}
         <div className="flex flex-col gap-10 items-center">
-          {certifications.map((cert, idx) => (
+          {accreditedCerts.map((cert, idx) => (
             <div
               key={idx}
               ref={(el) => {
@@ -183,14 +207,64 @@ export default function Certifications() {
 
                 {/* Mobile Tap Pill */}
                 <div className="mt-4 flex sm:hidden items-center gap-1.5 text-xs text-[#D9A15C] font-medium">
-                  <span>Tap to view certificate</span>
-                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                  </svg>
+                  <span>Tap to view full certificate</span>
+                  <span>→</span>
                 </div>
               </div>
             </div>
           ))}
+        </div>
+
+        {/* Compact Workshops Sub-Group */}
+        <div className="w-full md:w-[85%] mx-auto mt-20 pt-12 border-t border-white/5">
+          <div className="flex items-center gap-3 mb-8">
+            <span className="w-2 h-2 rounded-full bg-[#D9A15C]" />
+            <h3 className="text-xs md:text-sm font-mono uppercase tracking-[0.15em] text-[#D9A15C] font-semibold">
+              Workshops &amp; Seminars
+            </h3>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {workshops.map((ws, wIdx) => {
+              const itemIdx = accreditedCerts.length + wIdx;
+              return (
+                <div
+                  key={wIdx}
+                  ref={(el) => {
+                    itemsRef.current[itemIdx] = el;
+                  }}
+                  onClick={() => setSelectedCert(ws)}
+                  onKeyDown={(e) => {
+                    if (e.key === "Enter" || e.key === " ") {
+                      e.preventDefault();
+                      setSelectedCert(ws);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-label={`View ${ws.title} certificate`}
+                  className="gpu-accel bg-[#0F111A] border border-white/5 rounded-[1.25rem] p-6 shadow-md relative overflow-hidden group hover:-translate-y-1 hover:border-[#D9A15C]/40 transition-all duration-300 ease-out hover:shadow-[0_0_25px_rgba(217,161,92,0.12)] cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D9A15C]/50 flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between mb-3">
+                      <p className="text-[#D9A15C] font-medium tracking-[0.12em] uppercase text-[0.7rem]">
+                        {ws.issuer}
+                      </p>
+                      <svg className="w-3.5 h-3.5 text-[#D9A15C]/70 group-hover:text-[#D9A15C] transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </div>
+                    <h4 className="spider-glitch text-lg md:text-xl font-bold font-heading text-[#EDEDF2] mb-2 tracking-[-0.01em]">
+                      {ws.title}
+                    </h4>
+                    <p className="text-[#9A9AA5] text-xs md:text-sm leading-[1.6]">
+                      {ws.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </div>
 

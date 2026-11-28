@@ -12,77 +12,100 @@ export default function Education() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let headingSplit: SplitType | null = null;
+    const mm = gsap.matchMedia(containerRef);
 
-    const ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
-        if (!item) return;
+    mm.add(
+      {
+        isReduced: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const { isReduced } = context.conditions as { isReduced: boolean; isNormal: boolean };
+        let headingSplit: SplitType | null = null;
 
-        const textElement = item.querySelector(".reveal-text");
-        const dotElement = item.querySelector(".timeline-dot");
+        if (isReduced) {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
+            const textElement = item.querySelector(".reveal-text");
+            const dotElement = item.querySelector(".timeline-dot");
+            if (textElement) gsap.set(textElement, { opacity: 1, y: 0, scale: 1 });
+            if (dotElement) gsap.set(dotElement, { opacity: 1, scale: 1, backgroundColor: "#D9A15C" });
+          });
+          gsap.set(".education-heading", { opacity: 1, y: 0, scale: 1 });
+        } else {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
 
-        if (textElement && dotElement) {
-          gsap.fromTo(
-            textElement,
-            { opacity: 0, y: 30, scale: 0.98 },
-            {
-              opacity: 1,
-              y: 0,
-              scale: 1,
-              ease: "back.out(1.3)",
-              duration: 0.75,
-              scrollTrigger: {
-                trigger: item,
-                start: "top 88%",
-                once: true,
-              },
+            const textElement = item.querySelector(".reveal-text");
+            const dotElement = item.querySelector(".timeline-dot");
+
+            if (textElement && dotElement) {
+              gsap.fromTo(
+                textElement,
+                { opacity: 0, y: 30, scale: 0.98 },
+                {
+                  opacity: 1,
+                  y: 0,
+                  scale: 1,
+                  ease: "back.out(1.3)",
+                  duration: 0.75,
+                  scrollTrigger: {
+                    trigger: item,
+                    start: "top 88%",
+                    once: true,
+                  },
+                }
+              );
+
+              gsap.fromTo(
+                dotElement,
+                { scale: 0, opacity: 0 },
+                {
+                  scale: 1,
+                  opacity: 1,
+                  backgroundColor: "#D9A15C",
+                  ease: "back.out(2.2)",
+                  duration: 0.6,
+                  scrollTrigger: {
+                    trigger: item,
+                    start: "top 88%",
+                    once: true,
+                  },
+                }
+              );
             }
-          );
+          });
 
-          gsap.fromTo(
-            dotElement,
-            { scale: 0, opacity: 0 },
-            {
-              scale: 1,
-              opacity: 1,
-              backgroundColor: "#D9A15C",
-              ease: "back.out(2.2)",
-              duration: 0.6,
-              scrollTrigger: {
-                trigger: item,
-                start: "top 88%",
-                once: true,
-              },
-            }
-          );
-        }
-      });
-
-      headingSplit = new SplitType(".education-heading", { types: "chars" });
-      if (headingSplit.chars) {
-        gsap.fromTo(
-          headingSplit.chars,
-          { y: 60, opacity: 0, scale: 0.75 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.04,
-            ease: "back.out(1.8)",
-            duration: 0.75,
-            scrollTrigger: {
-              trigger: ".education-heading",
-              start: "top 85%",
-              once: true,
-            },
+          headingSplit = new SplitType(".education-heading", { types: "chars" });
+          if (headingSplit.chars) {
+            gsap.fromTo(
+              headingSplit.chars,
+              { y: 60, opacity: 0, scale: 0.75 },
+              {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.04,
+                ease: "back.out(1.8)",
+                duration: 0.75,
+                scrollTrigger: {
+                  trigger: ".education-heading",
+                  start: "top 85%",
+                  once: true,
+                },
+              }
+            );
           }
-        );
+        }
+
+        return () => {
+          headingSplit?.revert();
+        };
       }
-    }, containerRef);
+    );
 
     return () => {
-      ctx.revert();
-      headingSplit?.revert();
+      mm.revert();
     };
   }, []);
 

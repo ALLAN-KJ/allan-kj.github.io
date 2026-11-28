@@ -6,9 +6,20 @@ import { useState, useEffect } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+const links = [
+  { name: "Home", href: "#hero", id: "hero" },
+  { name: "Projects", href: "#projects", id: "projects" },
+  { name: "Experience", href: "#experience", id: "experience" },
+  { name: "Credentials", href: "#education", id: "education" },
+  { name: "Skills", href: "#skills", id: "skills" },
+  { name: "Competitions", href: "#competitions", id: "competitions" },
+  { name: "Contact", href: "#contact", id: "contact" },
+];
+
 export default function Header() {
   const { scrollY, scrollYProgress } = useScroll();
   const [isOpen, setIsOpen] = useState(false);
+  const [activeId, setActiveId] = useState("hero");
   
   // Nav background & backdrop blur smoothly adjust as you scroll (compositor-only, zero-reflow)
   const navBackground = useTransform(scrollY, [0, 100], ["rgba(10, 10, 10, 0)", "rgba(10, 10, 11, 0.9)"]);
@@ -21,46 +32,32 @@ export default function Header() {
     restDelta: 0.001
   });
 
-  const links = [
-    { name: "Home", href: "#hero", id: "hero" },
-    { name: "Projects", href: "#projects", id: "projects" },
-    { name: "Experience", href: "#experience", id: "experience" },
-    { name: "Skills", href: "#skills", id: "skills" },
-    { name: "Competitions", href: "#competitions", id: "competitions" },
-    { name: "Contact", href: "#contact", id: "contact" },
-  ];
-
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
     
     const triggers: ScrollTrigger[] = [];
-    
-    links.forEach(link => {
-      const section = document.getElementById(link.id);
-      const navItem = document.getElementById(`nav-${link.id}`);
-      const mobileNavItem = document.getElementById(`mobile-nav-${link.id}`);
-      
-      if (section && (navItem || mobileNavItem)) {
-        const trigger = ScrollTrigger.create({
-          trigger: section,
-          start: "top center",
-          end: "bottom center",
-          onToggle: (self) => {
-            if (self.isActive) {
-              if (navItem) navItem.classList.add("text-[#D9A15C]");
-              if (navItem) navItem.classList.remove("text-[#9A9AA5]");
-              if (mobileNavItem) mobileNavItem.classList.add("text-[#D9A15C]");
-              if (mobileNavItem) mobileNavItem.classList.remove("text-[#9A9AA5]");
-            } else {
-              if (navItem) navItem.classList.remove("text-[#D9A15C]");
-              if (navItem) navItem.classList.add("text-[#9A9AA5]");
-              if (mobileNavItem) mobileNavItem.classList.remove("text-[#D9A15C]");
-              if (mobileNavItem) mobileNavItem.classList.add("text-[#9A9AA5]");
-            }
-          }
-        });
-        triggers.push(trigger);
-      }
+    const sectionTargets = [
+      { id: "hero", targetId: "hero" },
+      { id: "projects", targetId: "projects" },
+      { id: "experience", targetId: "experience" },
+      { id: "education", targetId: "education" },
+      { id: "education", targetId: "certifications" },
+      { id: "skills", targetId: "skills" },
+      { id: "competitions", targetId: "competitions" },
+      { id: "contact", targetId: "contact" },
+    ];
+
+    sectionTargets.forEach(({ id, targetId }) => {
+      const section = document.getElementById(targetId);
+      if (!section) return;
+      const trigger = ScrollTrigger.create({
+        trigger: section,
+        start: "top center",
+        end: "bottom center",
+        onEnter: () => setActiveId(id),
+        onEnterBack: () => setActiveId(id),
+      });
+      triggers.push(trigger);
     });
     
     return () => {
@@ -83,21 +80,26 @@ export default function Header() {
         </div>
         
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-4 lg:gap-8">
-          <nav className="flex gap-4 lg:gap-8">
-            {links.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                id={`nav-${link.id}`}
-                className="nav-link glitch-hover text-[0.7rem] font-medium tracking-[0.12em] uppercase text-[#9A9AA5] hover:text-[#EDEDF2] transition-all duration-300 p-2 min-h-[44px] inline-flex items-center focus-visible:text-[#EDEDF2] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
-              >
-                {link.name}
-              </Link>
-            ))}
+        <div className="hidden md:flex items-center gap-2 lg:gap-6 xl:gap-8">
+          <nav className="flex gap-1.5 lg:gap-4 xl:gap-6">
+            {links.map((link) => {
+              const isActive = activeId === link.id;
+              return (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  id={`nav-${link.id}`}
+                  className={`nav-link glitch-hover text-[0.65rem] lg:text-[0.7rem] font-medium tracking-[0.08em] lg:tracking-[0.12em] uppercase transition-colors duration-200 p-1.5 lg:p-2 min-h-[44px] inline-flex items-center focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm whitespace-nowrap ${
+                    isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#EDEDF2]"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
           </nav>
 
-          {/* Social Icons */}
+          {/* Social Icons & Resume Download */}
           <div className="flex items-center gap-2 border-l border-white/10 pl-4 lg:pl-6">
             <a
               href="https://github.com/ALLAN-KJ"
@@ -120,6 +122,17 @@ export default function Header() {
               <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
               </svg>
+            </a>
+            <a
+              href="/resume.pdf"
+              download="Allan_KJ_Resume.pdf"
+              className="ml-1 px-3 py-1 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 hover:border-[#D9A15C] transition-all duration-300 text-[0.65rem] lg:text-[0.7rem] font-medium tracking-[0.1em] uppercase inline-flex items-center gap-1.5 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]"
+              aria-label="Download Resume"
+            >
+              <svg className="w-3 h-3 fill-none stroke-current" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
+              </svg>
+              <span>Resume</span>
             </a>
           </div>
         </div>
@@ -151,43 +164,61 @@ export default function Header() {
             exit={{ opacity: 0, y: -20 }}
             className="fixed inset-0 z-40 bg-black/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8 md:hidden"
           >
-            {links.map((link) => (
-              <Link 
-                key={link.name} 
-                href={link.href} 
-                id={`mobile-nav-${link.id}`}
-                onClick={() => setIsOpen(false)}
-                className="glitch-hover text-lg font-medium tracking-[0.12em] uppercase text-[#9A9AA5] hover:text-[#D9A15C] transition-all duration-300 min-h-[44px] flex items-center justify-center p-4 w-full focus-visible:text-[#D9A15C] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm"
-              >
-                {link.name}
-              </Link>
-            ))}
+            {links.map((link) => {
+              const isActive = activeId === link.id;
+              return (
+                <Link 
+                  key={link.name} 
+                  href={link.href} 
+                  id={`mobile-nav-${link.id}`}
+                  onClick={() => setIsOpen(false)}
+                  className={`glitch-hover text-lg font-medium tracking-[0.12em] uppercase transition-colors duration-200 min-h-[44px] flex items-center justify-center p-4 w-full focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50 rounded-sm ${
+                    isActive ? "text-[#D9A15C]" : "text-[#9A9AA5] hover:text-[#D9A15C]"
+                  }`}
+                >
+                  {link.name}
+                </Link>
+              );
+            })}
 
-            <div className="flex items-center gap-6 mt-4 pt-6 border-t border-white/10">
+            <div className="flex flex-col items-center gap-4 mt-4 pt-6 border-t border-white/10">
               <a
-                href="https://github.com/ALLAN-KJ"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#9A9AA5] hover:text-[#EDEDF2] transition-colors p-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em]"
-                aria-label="GitHub Profile"
+                href="/resume.pdf"
+                download="Allan_KJ_Resume.pdf"
+                className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] hover:bg-[#D9A15C]/20 transition-all duration-300 text-sm font-medium tracking-[0.12em] uppercase inline-flex items-center gap-2 min-h-[44px]"
+                aria-label="Download Resume"
               >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                <svg className="w-4 h-4 fill-none stroke-current" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v12m0 0l-4-4m4 4l4-4m-8 8h16" />
                 </svg>
-                GitHub
+                <span>Download Resume</span>
               </a>
-              <a
-                href="https://linkedin.com/in/allan-k-j-21389838a"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-[#9A9AA5] hover:text-[#D9A15C] transition-colors p-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em]"
-                aria-label="LinkedIn Profile"
-              >
-                <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
-                  <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                </svg>
-                LinkedIn
-              </a>
+              <div className="flex items-center gap-6">
+                <a
+                  href="https://github.com/ALLAN-KJ"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9A9AA5] hover:text-[#EDEDF2] transition-colors p-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em]"
+                  aria-label="GitHub Profile"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+                  </svg>
+                  GitHub
+                </a>
+                <a
+                  href="https://linkedin.com/in/allan-k-j-21389838a"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[#9A9AA5] hover:text-[#D9A15C] transition-colors p-2 inline-flex items-center gap-2 text-sm uppercase tracking-[0.12em]"
+                  aria-label="LinkedIn Profile"
+                >
+                  <svg className="w-5 h-5 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                  </svg>
+                  LinkedIn
+                </a>
+              </div>
             </div>
           </motion.div>
         )}

@@ -25,105 +25,138 @@ export default function Projects() {
 
     const mm = gsap.matchMedia();
 
-    // Universal: Letter-by-letter reveal for heading (shown one by one)
-    let headingSplit: SplitType | null = null;
-    if (heading) {
-      headingSplit = new SplitType(".projects-heading", { types: "chars" });
-      if (headingSplit.chars) {
-        gsap.fromTo(
-          headingSplit.chars,
-          { y: 60, opacity: 0, scale: 0.75 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.04,
-            duration: 0.75,
-            ease: "back.out(1.8)",
-            scrollTrigger: {
-              trigger: heading,
-              start: "top 85%",
-              once: true,
-            },
-          }
-        );
-      }
-    }
-
-    // Universal (Desktop, Tablet & Mobile): Pinned Horizontal Scrub with 1:1 Lenis Harmony
-    const cards = track.querySelectorAll(".project-card");
-    gsap.fromTo(
-      cards,
-      { y: 40, opacity: 0, scale: 0.95 },
+    mm.add(
       {
-        y: 0,
-        opacity: 1,
-        scale: 1,
-        stagger: 0.08,
-        duration: 0.75,
-        ease: "back.out(1.4)",
-        scrollTrigger: {
-          trigger: pinWrapper,
-          start: "top 85%",
-          once: true,
-        },
+        isReduced: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const { isReduced } = context.conditions as { isReduced: boolean; isNormal: boolean };
+
+        let headingSplit: SplitType | null = null;
+        if (heading) {
+          if (isReduced) {
+            gsap.set(heading, { opacity: 1, y: 0 });
+          } else {
+            headingSplit = new SplitType(".projects-heading", { types: "chars" });
+            if (headingSplit.chars) {
+              gsap.fromTo(
+                headingSplit.chars,
+                { y: 60, opacity: 0, scale: 0.75 },
+                {
+                  y: 0,
+                  opacity: 1,
+                  scale: 1,
+                  stagger: 0.04,
+                  duration: 0.75,
+                  ease: "back.out(1.8)",
+                  scrollTrigger: {
+                    trigger: heading,
+                    start: "top 85%",
+                    once: true,
+                  },
+                }
+              );
+            }
+          }
+        }
+
+        const cards = track.querySelectorAll(".project-card");
+        if (isReduced) {
+          gsap.set(cards, { opacity: 1, y: 0, scale: 1 });
+        } else {
+          gsap.fromTo(
+            cards,
+            { y: 40, opacity: 0, scale: 0.95 },
+            {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              stagger: 0.08,
+              duration: 0.75,
+              ease: "back.out(1.4)",
+              scrollTrigger: {
+                trigger: pinWrapper,
+                start: "top 85%",
+                once: true,
+              },
+            }
+          );
+        }
+
+        const getScrollAmount = () => {
+          const cardList = track.querySelectorAll(".project-card");
+          if (cardList.length > 0) {
+            const lastCard = cardList[cardList.length - 1] as HTMLElement;
+            const firstCard = cardList[0] as HTMLElement;
+            const totalDistance = (lastCard.offsetLeft + lastCard.offsetWidth) - firstCard.offsetLeft;
+            const endPadding = window.innerWidth < 768 ? 24 : 80;
+            return Math.max(0, totalDistance - window.innerWidth + endPadding + firstCard.offsetLeft);
+          }
+          return Math.max(0, track.scrollWidth - window.innerWidth + 40);
+        };
+
+        const horizontalScroll = gsap.to(track, {
+          x: () => -getScrollAmount(),
+          ease: "none",
+          scrollTrigger: {
+            trigger: pinWrapper,
+            start: "top top",
+            end: () => `+=${Math.max(window.innerHeight * 1.3, getScrollAmount() * 1.15)}`,
+            pin: true,
+            scrub: isReduced ? false : 0.5,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+            onUpdate: (self) => {
+              if (progressBarRef.current) {
+                progressBarRef.current.style.transform = `scaleX(${self.progress})`;
+              }
+            },
+          },
+        });
+
+        return () => {
+          horizontalScroll.kill();
+          headingSplit?.revert();
+        };
       }
     );
 
-    // Calculate exact scroll distance so last card rests comfortably inside the right margin on any screen
-    const getScrollAmount = () => {
-      const cards = track.querySelectorAll(".project-card");
-      if (cards.length > 0) {
-        const lastCard = cards[cards.length - 1] as HTMLElement;
-        const firstCard = cards[0] as HTMLElement;
-        const totalDistance = (lastCard.offsetLeft + lastCard.offsetWidth) - firstCard.offsetLeft;
-        const endPadding = window.innerWidth < 768 ? 24 : 80;
-        return Math.max(0, totalDistance - window.innerWidth + endPadding + firstCard.offsetLeft);
-      }
-      return Math.max(0, track.scrollWidth - window.innerWidth + 40);
-    };
-
-    // scrub: 0.5 creates buttery-smooth synchronization with Lenis without double-lag
-    const horizontalScroll = gsap.to(track, {
-      x: () => -getScrollAmount(),
-      ease: "none",
-      scrollTrigger: {
-        trigger: pinWrapper,
-        start: "top top",
-        end: () => `+=${Math.max(window.innerHeight * 1.3, getScrollAmount() * 1.15)}`,
-        pin: true,
-        scrub: 0.5, // Buttery-smooth scrub synchronized with Lenis without jitter
-        anticipatePin: 1,
-        invalidateOnRefresh: true,
-        onUpdate: (self) => {
-          if (progressBarRef.current) {
-            progressBarRef.current.style.transform = `scaleX(${self.progress})`;
-          }
-        },
-      },
-    });
-
     return () => {
-      horizontalScroll.kill();
-      headingSplit?.revert();
+      mm.revert();
     };
   }, []);
 
-  const projects = [
+  interface ProjectItem {
+    title: string;
+    category: string;
+    description: string;
+    tags?: string[];
+    github?: string;
+    link: string | null;
+    isCurrent?: boolean;
+    buttonText: string;
+  }
+
+  const projects: ProjectItem[] = [
     {
       title: "Personal Portfolio Website",
       category: "Interactive Portfolio",
       description:
         "Built with Next.js 15, TypeScript, GSAP, Tailwind CSS, and Lenis smooth scrolling. Features an interactive bash terminal emulator, Miles Morales-inspired kinetic glitch typography, and physics-based continuous momentum scrolling.",
+      tags: ["Next.js 15", "TypeScript", "Three.js", "React Three Fiber", "GSAP", "Tailwind CSS", "Lenis"],
+      github: "https://github.com/ALLAN-KJ/allan-kj.github.io",
       link: null,
       isCurrent: true,
       buttonText: "Currently Viewing",
     },
     {
       title: "Smart India Hackathon (SIH) 2026",
-      category: "Problem Statement 26160",
+      category: "IPsec Sentinel • PS 26160",
       description:
-        "Built and deployed a full-stack solution for SIH 2026 Problem Statement 26160. Deployed frontend on Vercel and backend on Render; live and accessible to all users.",
+        "Built and deployed IPsec Sentinel for Problem Statement 26160 — an AI-powered IPsec VPN analyzer with XGBoost risk classification, Post-Quantum Cryptography (PQC) readiness scoring, and cryptographic Merkle tree audit trails. Deployed full-stack with a responsive frontend on Vercel and API backend on Render.",
+      tags: ["Python", "FastAPI", "XGBoost", "IPsec/IKEv2", "PQC", "Vercel", "Render"],
+      github: "https://github.com/ALLAN-KJ/SIH-2026",
       link: "https://sih-2026-frontend-eight.vercel.app",
       buttonText: "View Live",
     },
@@ -132,6 +165,8 @@ export default function Projects() {
       category: "Full-Stack Web App",
       description:
         "Full-stack learning management system built during a Qaroo internship — features API integration and live student-facing functionality.",
+      tags: ["Full-Stack Web", "REST APIs", "Node.js"],
+      github: "https://github.com/ALLAN-KJ/Quaro-internship",
       link: "https://student-lms-vds8.onrender.com/",
       buttonText: "View Live",
     },
@@ -140,6 +175,8 @@ export default function Projects() {
       category: "AI Voice Assistant",
       description:
         "Building a voice-controlled AI assistant that sends WhatsApp messages and opens websites like Google and YouTube.",
+      tags: ["Python", "SpeechRecognition", "NLP", "Automation"],
+      github: "https://github.com/ALLAN-KJ/GHOST2",
       link: null,
       buttonText: "In Progress",
     },
@@ -148,6 +185,8 @@ export default function Projects() {
       category: "Interactive 3D Web (In Progress)",
       description:
         "Designing a book-shaped, themed interactive 3D website for education.",
+      tags: ["Next.js", "Three.js", "Canvas", "GSAP"],
+      github: "https://github.com/ALLAN-KJ/BOOK",
       link: null,
       buttonText: "In Progress",
     },
@@ -163,9 +202,10 @@ export default function Projects() {
       <div className="w-full max-w-7xl mx-auto px-6 lg:px-8 pt-32 pb-16 md:pt-40 md:pb-24 text-center md:text-left">
         <h2
           ref={headingRef}
+          aria-label="Selected Works."
           className="projects-heading group text-[clamp(4rem,10vw,8rem)] md:text-[9rem] lg:text-[12rem] font-black font-heading text-[#EDEDF2] tracking-[-0.05em] leading-[0.9] cursor-pointer"
         >
-          <span className="spider-glitch block" data-text="Selected">Selected</span>
+          <span className="spider-glitch block" data-text="Selected">Selected </span>
           <span className="spider-glitch block" data-text="Works.">
             Works<span className="text-[#D9A15C]">.</span>
           </span>
@@ -208,7 +248,7 @@ export default function Projects() {
           {projects.map((project, idx) => (
             <div
               key={idx}
-              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[420px] max-h-[66vh] md:h-[480px] lg:h-[500px] bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.12)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+              className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none min-h-[440px] md:min-h-[500px] h-auto bg-[#0F111A] border border-[#D9A15C]/15 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/50 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.12)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
             >
               <div>
                 {/* Card Header: Category Tag & Large Index Counter */}
@@ -233,10 +273,24 @@ export default function Projects() {
                 <p className="text-[#9A9AA5] text-sm md:text-base leading-[1.7] font-normal">
                   {project.description}
                 </p>
+
+                {/* Tech Tags */}
+                {project.tags && project.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-1.5 mt-4">
+                    {project.tags.map((tag, tIdx) => (
+                      <span
+                        key={tIdx}
+                        className="px-2.5 py-0.5 rounded-full bg-white/5 border border-white/8 text-[#EDEDF2] text-[0.65rem] md:text-xs font-mono font-normal tracking-wide"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                )}
               </div>
 
-              {/* Action Button */}
-              <div className="mt-6 md:mt-8 transition-transform duration-300 group-hover:translate-y-[-2px]">
+              {/* Action Buttons */}
+              <div className="mt-6 md:mt-8 flex items-center gap-3 flex-wrap transition-transform duration-300 group-hover:translate-y-[-2px]">
                 {project.isCurrent ? (
                   <div className="px-5 py-2.5 rounded-full border border-[#D9A15C]/40 bg-[#D9A15C]/10 text-[#D9A15C] inline-flex items-center justify-center text-xs md:text-sm font-semibold uppercase tracking-[0.12em] min-h-[40px] shadow-[0_0_20px_rgba(217,161,92,0.15)] cursor-default">
                     Currently Viewing
@@ -254,13 +308,29 @@ export default function Projects() {
                     {project.buttonText}
                   </div>
                 )}
+
+                {/* GitHub link button if present */}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2.5 rounded-full border border-white/10 bg-white/5 text-[#9A9AA5] hover:text-[#D9A15C] hover:border-[#D9A15C]/40 transition-colors inline-flex items-center justify-center min-w-[40px] min-h-[40px] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[#D9A15C]/50"
+                    aria-label={`GitHub repository for ${project.title}`}
+                    title="View GitHub Repository"
+                  >
+                    <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24" aria-hidden="true">
+                      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+                    </svg>
+                  </a>
+                )}
               </div>
             </div>
           ))}
 
           {/* Concluding Card: Explore More on GitHub & Contact */}
           <div
-            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none h-[420px] max-h-[66vh] md:h-[480px] lg:h-[500px] bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.18)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
+            className="project-card gpu-accel group flex-shrink-0 w-[82vw] max-w-[340px] md:w-[440px] lg:w-[460px] xl:w-[480px] md:max-w-none min-h-[440px] md:min-h-[500px] h-auto bg-[#0F111A] border border-[#D9A15C]/25 rounded-[1.75rem] p-6 md:p-8 lg:p-9 flex flex-col justify-between hover:border-[#D9A15C]/60 transition-all duration-300 ease-out md:hover:-translate-y-2 hover:shadow-[0_0_40px_rgba(217,161,92,0.18)] shadow-xl cursor-default relative overflow-hidden backdrop-blur-sm will-change-transform"
           >
             <div>
               {/* Card Header: Category Tag & GitHub SVG Link */}

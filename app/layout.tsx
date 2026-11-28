@@ -23,25 +23,11 @@ const clashDisplay = localFont({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://allan-kj.github.io/"),
-  applicationName: "Allan K.J",
-  title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
+  applicationName: "Allan K J",
+  title: "Allan K J — Cybersecurity Student & Developer",
   description:
-    "Official interactive 3D portfolio of Allan K.J — Cybersecurity specialist and creative developer. Explore real-time WebGL experiences, IPsec VPN security research, and full-stack software engineering.",
-  keywords: [
-    "Allan K.J",
-    "Allan K J",
-    "Allan KJ",
-    "Allan K.J portfolio",
-    "Allan K.J official website",
-    "Allan K.J developer",
-    "Allan Karunya",
-    "Allan Cybersecurity",
-    "Full-Stack Developer",
-    "Creative Developer",
-    "Allan portfolio",
-    "IPsec Sentinel",
-  ],
-  authors: [{ name: "Allan K.J", url: "https://allan-kj.github.io/" }],
+    "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+  authors: [{ name: "Allan K J", url: "https://allan-kj.github.io/" }],
   icons: {
     icon: [
       { url: "/favicon.svg", type: "image/svg+xml" },
@@ -53,18 +39,27 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
+    title: "Allan K J — Cybersecurity Student & Developer",
     description:
-      "Official interactive 3D portfolio of Allan K.J — Cybersecurity specialist and creative developer. Featuring real-time WebGL 3D scenes and security research.",
+      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
     url: "https://allan-kj.github.io/",
-    siteName: "Allan K.J",
+    siteName: "Allan K J",
     type: "website",
+    images: [
+      {
+        url: "https://allan-kj.github.io/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Allan K J — Cybersecurity Student & Developer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Allan K.J — Cybersecurity Specialist & Creative 3D Engineer",
+    title: "Allan K J — Cybersecurity Student & Developer",
     description:
-      "Official interactive 3D portfolio of Allan K.J — Cybersecurity specialist and creative developer.",
+      "Portfolio of Allan K J, a second-year B.Tech CSE (Cybersecurity) student at Karunya. Full-stack projects, internships, certifications, and hackathons.",
+    images: ["https://allan-kj.github.io/og-image.png"],
   },
   robots: {
     index: true,
@@ -121,12 +116,12 @@ const personJsonLd = {
   name: "Allan K J",
   alternateName: ["Allan K.J", "Allan K. J.", "Allan KJ"],
   url: "https://allan-kj.github.io/",
-  image: "https://allan-kj.github.io/icon-512.png",
-  jobTitle: "Cybersecurity Specialist & Full-Stack Developer",
+  image: "https://allan-kj.github.io/og-image.png",
+  jobTitle: "Cybersecurity Student & Developer",
   description:
-    "Cybersecurity specialist and creative developer engineering immersive 3D web applications, network defense systems, and full-stack software architectures.",
+    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences. Builds full-stack web apps and interactive 3D websites, with hands-on exposure to enterprise IT security and networking.",
   disambiguatingDescription:
-    "Cybersecurity specialist, network defense researcher, and creative full-stack software engineer based in India, alumnus of Karunya Institute of Technology and Sciences.",
+    "Second-year B.Tech CSE (Cybersecurity) student at Karunya Institute of Technology and Sciences, building full-stack web applications and interactive 3D websites.",
   knowsAbout: [
     "Cybersecurity",
     "Network Security",
@@ -162,16 +157,6 @@ const personJsonLd = {
     },
     {
       "@type": "EducationalOccupationalCredential",
-      name: "Privacy and Security in Online Social Media",
-      credentialCategory: "NPTEL Elite Certification",
-      recognizedBy: {
-        "@type": "Organization",
-        name: "NPTEL (IIIT Hyderabad / IIT Madras)",
-      },
-      url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
       name: "Red Hat System Administration I (RH124)",
       credentialCategory: "Certificate of Attendance",
       recognizedBy: {
@@ -179,6 +164,15 @@ const personJsonLd = {
         name: "Red Hat",
       },
       url: "https://www.credly.com/badges/d96a0650-ceea-430e-85cd-f56ea4f194a0",
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Oracle Java Foundations (1Z0-811)",
+      credentialCategory: "Professional Credential",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "Oracle",
+      },
     },
     {
       "@type": "EducationalOccupationalCredential",
@@ -192,21 +186,22 @@ const personJsonLd = {
     },
     {
       "@type": "EducationalOccupationalCredential",
-      name: "Oracle Java Foundations (1Z0-811)",
-      credentialCategory: "Professional Credential",
-      recognizedBy: {
-        "@type": "Organization",
-        name: "Oracle",
-      },
-    },
-    {
-      "@type": "EducationalOccupationalCredential",
       name: "Introduction to IoT",
       credentialCategory: "Student Credential",
       recognizedBy: {
         "@type": "Organization",
         name: "Cisco Networking Academy",
       },
+    },
+    {
+      "@type": "EducationalOccupationalCredential",
+      name: "Privacy and Security in Online Social Media",
+      credentialCategory: "NPTEL Elite Certification",
+      recognizedBy: {
+        "@type": "Organization",
+        name: "NPTEL (IIIT Hyderabad / IIT Madras)",
+      },
+      url: "https://archive.nptel.ac.in/noc/Ecertificate/?q=NPTEL26CS141S1084806030",
     },
   ],
   sameAs: [

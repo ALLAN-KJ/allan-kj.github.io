@@ -3,12 +3,27 @@
 import { motion } from "motion/react";
 import React from "react";
 
-export default function AnimatedButton({ children, href = "#", target, rel, className = "" }: { children: React.ReactNode, href?: string, target?: string, rel?: string, className?: string }) {
+export default function AnimatedButton({
+  children,
+  href = "#",
+  target,
+  rel,
+  className = "",
+  onClick,
+}: {
+  children: React.ReactNode;
+  href?: string;
+  target?: string;
+  rel?: string;
+  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLAnchorElement>) => void;
+}) {
   return (
     <motion.a
       href={href}
       target={target}
       rel={rel}
+      onClick={onClick}
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       transition={{ type: "spring", stiffness: 300, damping: 15 }}

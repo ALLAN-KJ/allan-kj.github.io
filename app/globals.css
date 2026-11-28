@@ -59,7 +59,8 @@
     animation: marquee 30s linear infinite reverse;
   }
 
-  .pause-on-hover:hover {
+  .pause-on-hover:hover,
+  .pause-on-hover:focus-within {
     animation-play-state: paused;
   }
 
@@ -110,38 +111,36 @@
     overflow: hidden;
   }
 
-  /* Electric Cyan / Dimension Tear Layer - ONLY ON HOVER */
+  /* Electric Cyan / Dimension Tear Layer - ONLY ON HOVER (1-time burst) */
   .spider-glitch:hover::before,
   .glitch-hover:hover::before,
   .group:hover .spider-glitch::before,
   .project-card:hover .spider-glitch::before {
-    opacity: 1;
     color: #00ffff;
     text-shadow: -3px 0 #00ffff, 0 0 15px rgba(0, 255, 255, 0.9);
-    animation: miles-glitch-cyan 0.35s steps(2, end) infinite;
+    animation: miles-glitch-cyan 0.35s steps(2, end) forwards;
     mix-blend-mode: screen;
     z-index: 2;
   }
 
-  /* Hot Magenta-Red / Miles Spider Suit Layer - ONLY ON HOVER */
+  /* Hot Magenta-Red / Miles Spider Suit Layer - ONLY ON HOVER (1-time burst) */
   .spider-glitch:hover::after,
   .glitch-hover:hover::after,
   .group:hover .spider-glitch::after,
   .project-card:hover .spider-glitch::after {
-    opacity: 1;
     color: #ff0055;
     text-shadow: 3px 0 #ff0055, 0 0 15px rgba(255, 0, 85, 0.9);
-    animation: miles-glitch-magenta 0.3s steps(2, end) infinite;
+    animation: miles-glitch-magenta 0.3s steps(2, end) forwards;
     mix-blend-mode: screen;
     z-index: 3;
   }
 
-  /* Main text vibration with chromatic split & venom electricity - ONLY ON HOVER */
+  /* Main text vibration with chromatic split - ONLY ON HOVER (1-time burst) */
   .spider-glitch:hover,
   .glitch-hover:hover,
   .group:hover .spider-glitch,
   .project-card:hover .spider-glitch {
-    animation: miles-glitch-base 0.25s steps(2, end) infinite;
+    animation: miles-glitch-base 0.25s steps(2, end) forwards;
   }
 
   /* 60 FPS GPU Acceleration Utilities */
@@ -155,6 +154,7 @@
 
 @keyframes miles-glitch-cyan {
   0% {
+    opacity: 1;
     clip-path: inset(15% 0 65% 0);
     transform: translate(-6px, -1px) skewX(-3deg);
   }
@@ -179,17 +179,20 @@
     transform: translate(7px, -1px) skewX(2deg);
   }
   85% {
+    opacity: 1;
     clip-path: inset(0% 0 85% 0);
     transform: translate(-5px, 2px) skewX(-4deg);
   }
   100% {
-    clip-path: inset(40% 0 35% 0);
-    transform: translate(4px, 0) skewX(1.5deg);
+    opacity: 0;
+    clip-path: inset(0);
+    transform: translate(0);
   }
 }
 
 @keyframes miles-glitch-magenta {
   0% {
+    opacity: 1;
     clip-path: inset(60% 0 15% 0);
     transform: translate(7px, 1px) skewX(2.5deg);
   }
@@ -214,12 +217,14 @@
     transform: translate(-5px, 0) skewX(-1.5deg);
   }
   85% {
+    opacity: 1;
     clip-path: inset(5% 0 80% 0);
     transform: translate(4px, -2px) skewX(2.5deg);
   }
   100% {
-    clip-path: inset(25% 0 50% 0);
-    transform: translate(-3px, 1px) skewX(-2deg);
+    opacity: 0;
+    clip-path: inset(0);
+    transform: translate(0);
   }
 }
 
@@ -246,7 +251,7 @@
   }
   100% {
     transform: translate(0);
-    text-shadow: 2px 0 #00ffff, -2px 0 #ff0055;
+    text-shadow: none;
   }
 }
 
@@ -271,14 +276,24 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
   .animate-marquee,
   .animate-marquee-reverse {
-    animation: none;
+    animation: none !important;
   }
   
   .glitch-hover:hover,
-  .glitch-active {
-    animation: none;
+  .glitch-active,
+  .spider-glitch:hover,
+  .spider-glitch::before,
+  .spider-glitch::after {
+    animation: none !important;
     color: #D9A15C;
   }
 }

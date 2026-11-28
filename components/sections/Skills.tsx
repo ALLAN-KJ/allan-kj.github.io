@@ -14,67 +14,84 @@ export default function Skills() {
 
     if (!containerRef.current) return;
 
-    let headingSplit: SplitType | null = null;
+    const mm = gsap.matchMedia(containerRef);
 
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        itemsRef.current,
-        { opacity: 0, y: 60, scale: 0.9 },
-        {
-          opacity: 1,
-          y: 0,
-          scale: 1,
-          stagger: 0.12,
-          ease: "back.out(1.6)",
-          duration: 0.8,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: "top 82%",
-            once: true,
-          },
-        }
-      );
+    mm.add(
+      {
+        isReduced: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const { isReduced } = context.conditions as { isReduced: boolean; isNormal: boolean };
+        let headingSplit: SplitType | null = null;
 
-      headingSplit = new SplitType(".skills-heading", { types: "chars" });
-      if (headingSplit.chars) {
-        gsap.fromTo(
-          headingSplit.chars,
-          { y: 60, opacity: 0, scale: 0.75 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.04,
-            ease: "back.out(1.8)",
-            duration: 0.75,
-            scrollTrigger: {
-              trigger: ".skills-heading",
-              start: "top 85%",
-              once: true,
-            },
+        if (isReduced) {
+          gsap.set(itemsRef.current, { opacity: 1, y: 0, scale: 1 });
+          gsap.set(".skills-heading", { opacity: 1, y: 0, scale: 1 });
+        } else {
+          gsap.fromTo(
+            itemsRef.current,
+            { opacity: 0, y: 60, scale: 0.9 },
+            {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              stagger: 0.12,
+              ease: "back.out(1.6)",
+              duration: 0.8,
+              scrollTrigger: {
+                trigger: containerRef.current,
+                start: "top 82%",
+                once: true,
+              },
+            }
+          );
+
+          headingSplit = new SplitType(".skills-heading", { types: "chars" });
+          if (headingSplit.chars) {
+            gsap.fromTo(
+              headingSplit.chars,
+              { y: 60, opacity: 0, scale: 0.75 },
+              {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.04,
+                ease: "back.out(1.8)",
+                duration: 0.75,
+                scrollTrigger: {
+                  trigger: ".skills-heading",
+                  start: "top 85%",
+                  once: true,
+                },
+              }
+            );
           }
-        );
+        }
+
+        return () => {
+          headingSplit?.revert();
+        };
       }
-    }, containerRef);
+    );
 
     return () => {
-      ctx.revert();
-      headingSplit?.revert();
+      mm.revert();
     };
   }, []);
 
   const skillCategories = [
     {
       title: "Languages",
-      skills: ["Python", "C", "Java", "TypeScript", "HTML", "CSS", "JavaScript"],
+      skills: ["Python", "TypeScript", "JavaScript", "C", "Java", "HTML5 & CSS3"],
     },
     {
-      title: "APIs & Tools",
-      skills: ["ElevenLabs API", "Groq API", "Antigravity", "Docker", "Git", "VS Code"],
+      title: "Frameworks & 3D",
+      skills: ["Next.js", "React", "Three.js", "Tailwind CSS", "GSAP", "Node.js"],
     },
     {
-      title: "Domains",
-      skills: ["Cybersecurity", "System Design", "IoT", "Linux System Administration"],
+      title: "Security & Tools",
+      skills: ["Cybersecurity", "Linux System Administration", "Docker", "Git", "Groq API", "IoT"],
     },
   ];
 

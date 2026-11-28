@@ -13,11 +13,14 @@ const COMMAND_DATA: Record<string, string> = {
   help: `Available commands:
 
   whoami           Personal & academic info
-  skills           Languages, frameworks, domains
+  skills           Languages, frameworks, tools
   experience       Internships & roles
   projects         Selected builds
+  education        Academic background
   certifications   Professional credentials
+  competitions     Hackathons & challenges
   contact          Reach out
+  resume           Download PDF resume
   clear            Clear terminal
   help             Show this list`,
 
@@ -25,32 +28,47 @@ const COMMAND_DATA: Record<string, string> = {
 B.Tech CSE (Cybersecurity) @ Karunya Institute of Technology and Sciences
 Coimbatore, India | Expected May 2029 | CGPA: 7.06 / 10`,
 
-  skills: `Languages : Python, C, Java, TypeScript, HTML, CSS, JavaScript
-Tools/APIs: ElevenLabs API, Groq API, Antigravity, Docker, Git, VS Code
-Domains   : Cybersecurity, System Design, IoT, Linux System Administration`,
+  skills: `Frameworks: Next.js, React, Three.js, Tailwind CSS, GSAP, Node.js
+Languages : Python, TypeScript, JavaScript, C, Java, HTML5 & CSS3
+Tools/Sec : Cybersecurity, Linux SysAdmin, Docker, Git, Groq API, IoT`,
 
   experience: `1. ZF Group — IT Security & Networking Intern (Jun 2 – Jul 3, 2026 | Coimbatore)
 2. Conesta Forge — 5-Day AI Build Sprint, #33 Leaderboard / Score 1,391 (Jun 21 – 26, 2026)
 3. Qaroo — Software Intern, Full-Stack & API Integration (Jun 1 – 20, 2026)`,
 
-  projects: `1. SIH 2026 (PS 26160)   -> https://sih-2026-frontend-eight.vercel.app
+  projects: `1. SIH 2026 (IPsec Sentinel, PS 26160) -> https://sih-2026-frontend-eight.vercel.app
 2. Interactive Portfolio -> https://allan-kj.github.io/ (This Site)
 3. Student LMS Platform  -> https://student-lms-vds8.onrender.com/
 4. GHOST Voice Assistant -> Desktop AI assistant for WhatsApp & browser automation
 5. 3D Education Website  -> Interactive book-geometry learning platform`,
 
-  certifications: `- Google Cloud Certified — Generative AI Leader
+  education: `B.Tech — Computer Science & Engineering (Specialisation: Cybersecurity)
+Karunya Institute of Technology and Sciences, Coimbatore, India
+Expected: May 2029 | CGPA: 7.06 / 10`,
+
+  certifications: `Accredited Certifications:
+- Google Cloud Certified — Generative AI Leader
 - Red Hat System Administration I (RH124 v10)
 - Oracle Java Foundations (1Z0-811)
-- Cisco Intro to IoT & Digital Transformation
+- IBM Artificial Intelligence Fundamentals
+- Cisco Introduction to IoT
+- NPTEL Privacy & Security in Online Social Media (Elite, 67%)
+
+Workshops:
 - EC-Council Cybersecurity Workshop (1 CPE)
-- AIORI-3 Internet Measurements Workshop (MeitY / NIXI & APNIC)
-- NPTEL Privacy & Security in Online Social Media (67%)`,
+- AIORI-3 Internet Measurements Workshop (MeitY / NIXI & APNIC)`,
+
+  competitions: `1. Smart India Hackathon (SIH) 2026 — PS 26160: Built & deployed IPsec Sentinel (AI-powered IPsec VPN analyzer with XGBoost & PQC scoring)
+2. Mindkraft 2026 — Hashes over Roses 3.0, Crypto Crime 2.0, IoT Inferno
+3. Hacknex Hackathon 2026 (Participated)
+4. Aurelion Hackathon 2026 (Participated)`,
 
   contact: `Email   : allan22kj@gmail.com
-Phone   : +91 93614 09760
 GitHub  : github.com/ALLAN-KJ
 LinkedIn: linkedin.com/in/allan-k-j-21389838a`,
+
+  resume: `Initiating download: Allan_KJ_Resume.pdf
+Direct link: /resume.pdf`,
 };
 
 export default function HeroTerminal() {
@@ -106,6 +124,15 @@ export default function HeroTerminal() {
         setEntries([]);
         setInputVal("");
         return;
+      }
+
+      if (trimmed.toLowerCase() === "resume") {
+        const link = document.createElement("a");
+        link.href = "/resume.pdf";
+        link.download = "Allan_KJ_Resume.pdf";
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
       }
 
       const match = COMMAND_DATA[trimmed.toLowerCase()];

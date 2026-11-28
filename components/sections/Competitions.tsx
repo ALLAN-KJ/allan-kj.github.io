@@ -12,55 +12,75 @@ export default function Competitions() {
   useEffect(() => {
     gsap.registerPlugin(ScrollTrigger);
 
-    let headingSplit: SplitType | null = null;
+    const mm = gsap.matchMedia(containerRef);
 
-    const ctx = gsap.context(() => {
-      itemsRef.current.forEach((item) => {
-        if (!item) return;
-        
-        gsap.fromTo(
-          item,
-          { opacity: 0, y: 60, scale: 0.9 },
-          {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            ease: "back.out(1.6)",
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 88%",
-              once: true,
-            },
-          }
-        );
-      });
+    mm.add(
+      {
+        isReduced: "(prefers-reduced-motion: reduce)",
+        isNormal: "(prefers-reduced-motion: no-preference)",
+      },
+      (context) => {
+        const { isReduced } = context.conditions as { isReduced: boolean; isNormal: boolean };
+        let headingSplit: SplitType | null = null;
 
-      headingSplit = new SplitType(".competitions-heading", { types: "chars" });
-      if (headingSplit.chars) {
-        gsap.fromTo(
-          headingSplit.chars,
-          { y: 60, opacity: 0, scale: 0.75 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            stagger: 0.04,
-            ease: "back.out(1.8)",
-            duration: 0.75,
-            scrollTrigger: {
-              trigger: ".competitions-heading",
-              start: "top 85%",
-              once: true,
-            },
+        if (isReduced) {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
+            gsap.set(item, { opacity: 1, y: 0, scale: 1 });
+          });
+          gsap.set(".competitions-heading", { opacity: 1, y: 0, scale: 1 });
+        } else {
+          itemsRef.current.forEach((item) => {
+            if (!item) return;
+            
+            gsap.fromTo(
+              item,
+              { opacity: 0, y: 60, scale: 0.9 },
+              {
+                opacity: 1,
+                y: 0,
+                scale: 1,
+                ease: "back.out(1.6)",
+                duration: 0.8,
+                scrollTrigger: {
+                  trigger: item,
+                  start: "top 88%",
+                  once: true,
+                },
+              }
+            );
+          });
+
+          headingSplit = new SplitType(".competitions-heading", { types: "chars" });
+          if (headingSplit.chars) {
+            gsap.fromTo(
+              headingSplit.chars,
+              { y: 60, opacity: 0, scale: 0.75 },
+              {
+                y: 0,
+                opacity: 1,
+                scale: 1,
+                stagger: 0.04,
+                ease: "back.out(1.8)",
+                duration: 0.75,
+                scrollTrigger: {
+                  trigger: ".competitions-heading",
+                  start: "top 85%",
+                  once: true,
+                },
+              }
+            );
           }
-        );
+        }
+
+        return () => {
+          headingSplit?.revert();
+        };
       }
-    }, containerRef);
+    );
 
     return () => {
-      ctx.revert();
-      headingSplit?.revert();
+      mm.revert();
     };
   }, []);
 
@@ -68,8 +88,8 @@ export default function Competitions() {
     {
       title: "Smart India Hackathon (SIH) 2026",
       date: "2026",
-      events: ["National Hackathon — PS 26160"],
-      description: "Built and deployed a full-stack web and backend solution for Problem Statement 26160."
+      events: ["National Hackathon", "Problem Statement 26160", "IPsec Sentinel"],
+      description: "Built and deployed IPsec Sentinel for Problem Statement 26160 — an AI-powered IPsec VPN analyzer with XGBoost risk classification, Post-Quantum Cryptography (PQC) readiness scoring, and cryptographic Merkle tree audit trails. Deployed full-stack with a live frontend on Vercel and API backend on Render."
     },
     {
       title: "Mindkraft 2026",
@@ -81,13 +101,13 @@ export default function Competitions() {
       title: "Hacknex Hackathon",
       date: "2026",
       events: ["Hackathon Challenge"],
-      description: "Participated in high-intensity software build and problem-solving competition."
+      description: "Participated."
     },
     {
       title: "Aurelion Hackathon",
       date: "2026",
       events: ["24-Hour Hackathon"],
-      description: "Participated as part of a small team."
+      description: "Participated as part of a small team in a 24-hour hackathon."
     },
   ];
 
